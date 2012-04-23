@@ -1,0 +1,477 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>NZ</title>
+<style type="text/css">
+    li { list-style: none;  margin: 0; }
+    p { margin: 0; }
+    span.foldopened { color: white; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: visible;
+    cursor:pointer; }
+
+
+    span.foldclosed { color: #666666; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: hidden;
+    cursor:pointer; }
+
+    span.foldspecial { color: #666666; font-size: xx-small; border-style: none solid solid none;
+    border-color: #CCCCCC; border-width: 1; font-family: sans-serif; padding: 0em 0.1em 0em 0.1em; background: #e0e0e0;
+    cursor:pointer; }
+
+    span.l { color: red; font-weight: bold; }
+
+    a.mapnode:link {text-decoration: none; color: black; }
+    a.mapnode:visited {text-decoration: none; color: black; }
+    a.mapnode:active {text-decoration: none; color: black; }
+    a.mapnode:hover {text-decoration: none; color: black; background: #eeeee0; }
+
+</style>
+<!-- ^ Position is not set to relative / absolute here because of Mozilla -->
+</head>
+<body>
+
+<script type="text/javascript">
+   // Here we implement folding. It works fine with MSIE5.5, MSIE6.0 and
+   // Mozilla 0.9.6.
+
+   if (document.layers) {
+      //Netscape 4 specific code
+      pre = 'document.';
+      post = ''; }
+   if (document.getElementById) {
+      //Netscape 6 specific code
+      pre = 'document.getElementById("';
+      post = '").style'; }
+   if (document.all) {
+      //IE4+ specific code
+      pre = 'document.all.';
+      post = '.style'; }
+
+function layer_exists(layer) {
+   try {
+      eval(pre + layer + post);
+      return true; }
+   catch (error) {
+      return false; }}
+
+function show_layer(layer) {
+   eval(pre + layer + post).position = 'relative'; 
+   eval(pre + layer + post).visibility = 'visible'; }
+
+function hide_layer(layer) {
+   eval(pre + layer + post).visibility = 'hidden';
+   eval(pre + layer + post).position = 'absolute'; }
+
+function hide_folder(folder) {
+    hide_folding_layer(folder)
+    show_layer('show'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function show_folder(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_layer('show'+folder+'_'+i); }
+}
+function show_folder_completely(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+
+
+function hide_folding_layer(folder) {
+   var i;
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folding_layer(folder+'_'+i); }
+
+   hide_layer('hide'+folder);
+   hide_layer('show'+folder);
+   hide_layer('fold'+folder);
+
+   scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function fold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folder(folder+'_'+i); }
+}
+
+function unfold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+</script>
+<SPAN class="foldspecial" onclick="fold_document()">All +</SPAN>
+<SPAN class="foldspecial" onclick="unfold_document()">All -</SPAN>
+<p>NZ
+<ul><li>Thu, Apr 26
+<ul><li>11:50
+<ul><li>Beijing
+<ul><li>NZ0286
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>Fri, Apr 27
+<ul><li><span id="show1_1" class="foldclosed" onClick="show_folder('1_1')" style="POSITION: absolute">+</span> <span id="hide1_1" class="foldopened" onClick="hide_folder('1_1')">-</span>
+04:45 
+<ul id="fold1_1" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_1_1" class="foldclosed" onClick="show_folder('1_1_1')" style="POSITION: absolute">+</span> <span id="hide1_1_1" class="foldopened" onClick="hide_folder('1_1_1')">-</span>
+Arrived Auckland
+<ul id="fold1_1_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#22885;&#20811;&#20848;&#22269;&#38469;&#26426;&#22330;&#20986;&#21475;&#22788;&#30340;&#8220;arrive&#8221;&#26434;&#24535;
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_2" class="foldclosed" onClick="show_folder('1_2')" style="POSITION: absolute">+</span> <span id="hide1_2" class="foldopened" onClick="hide_folder('1_2')">-</span>
+09:30
+<ul id="fold1_2" style="POSITION: relative; VISIBILITY: visible;"><li>Jetstar Airways 245
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_3" class="foldclosed" onClick="show_folder('1_3')" style="POSITION: absolute">+</span> <span id="hide1_3" class="foldopened" onClick="hide_folder('1_3')">-</span>
+10:50 
+<ul id="fold1_3" style="POSITION: relative; VISIBILITY: visible;"><li>Arrived Christchurch 
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_4" class="foldclosed" onClick="show_folder('1_4')" style="POSITION: absolute">+</span> <span id="hide1_4" class="foldopened" onClick="hide_folder('1_4')">-</span>
+SuperMarket
+<ul id="fold1_4" style="POSITION: relative; VISIBILITY: visible;"><li><p>1. &nbsp;PAK N SAVE &nbsp;http://www.paknsave.co.nz/splash.aspx Hornby Mall, Main South Road, Christchurch Phone: (03) 349-8145 &nbsp;Hours: 7am-11pm, 7 days a week 
+<br>
+
+<br>
+2. &nbsp;NEW WORLD &nbsp;&nbsp;&nbsp;http://www.newworld.co.nz/ South City Shop 2, 555 Colombo Street, Christchurch Hours: Mon-Sun 7.30am-9.00pm, 7 days a week. Phone: (03)377-6778 
+<br>
+
+<br>
+3. &nbsp;COUNT DOWN http://www.progressive.co.nz/loc ... 6a-78fbddb94ff0.asp Barrington FreshChoice Address: Barrington Mall, Barrrington, Christchurch Phone: (03) 332 6364 &nbsp;Fax: (03) 332 6814 Trading Hours: Mon - Sun, 7am &#8211;&nbsp;Midnight
+</li>
+</ul>
+</li>
+<li><span id="show1_5" class="foldclosed" onClick="show_folder('1_5')" style="POSITION: absolute">+</span> <span id="hide1_5" class="foldopened" onClick="hide_folder('1_5')">-</span>
+Lake Tekapo
+<ul id="fold1_5" style="POSITION: relative; VISIBILITY: visible;"><li>&#31532;&#19968;&#26102;&#38388;&#21435;&#25945;&#22530;&#12289;&#26202;&#19978;&#35266;&#26143;&#65292;&#28165;&#26216;&#35266;&#28246;
+
+</li>
+<li>&#26085;&#26412;&#39184;&#21381;dinner
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_6" class="foldclosed" onClick="show_folder('1_6')" style="POSITION: absolute">+</span> <span id="hide1_6" class="foldopened" onClick="hide_folder('1_6')">-</span>
+Sat, Apr 28
+<ul id="fold1_6" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_6_1" class="foldclosed" onClick="show_folder('1_6_1')" style="POSITION: absolute">+</span> <span id="hide1_6_1" class="foldopened" onClick="hide_folder('1_6_1')">-</span>
+&#28165;&#26216;&#35266;Lake Tekapo
+<ul id="fold1_6_1" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_6_1_1" class="foldclosed" onClick="show_folder('1_6_1_1')" style="POSITION: absolute">+</span> <span id="hide1_6_1_1" class="foldopened" onClick="hide_folder('1_6_1_1')">-</span>
+Mt John
+<ul id="fold1_6_1_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#22825;&#25991;&#21488;
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_6_2" class="foldclosed" onClick="show_folder('1_6_2')" style="POSITION: absolute">+</span> <span id="hide1_6_2" class="foldopened" onClick="hide_folder('1_6_2')">-</span>
+&#39550;&#36710;&#21040;Mt Cook
+<ul id="fold1_6_2" style="POSITION: relative; VISIBILITY: visible;"><li><p>81.5 km &#8211;&nbsp;about 56 mins
+<p>MOUNT COOK SALMON&#65306; LOCATED ON HYDROELECTRIC CANAL BETWEEN LAKES TEKAPO &amp; PUKAKI &nbsp;TWIZEL PH: 021 37 00 38 E-MAIL:INFO@MTCOOKSALMON.COM WWW.MTCOOKSALMON.COM OPEN&#65306; 8&#65306;30AM&#65293;&#65293;5&#65306;00PM
+</li>
+</ul>
+</li>
+<li><span id="show1_6_3" class="foldclosed" onClick="show_folder('1_6_3')" style="POSITION: absolute">+</span> <span id="hide1_6_3" class="foldopened" onClick="hide_folder('1_6_3')">-</span>
+&#24211;&#20811;&#23665;&#27493;&#36947;
+<ul id="fold1_6_3" style="POSITION: relative; VISIBILITY: visible;"><li><p><span id="show1_6_3_1" class="foldclosed" onClick="show_folder('1_6_3_1')" style="POSITION: absolute">+</span> <span id="hide1_6_3_1" class="foldopened" onClick="hide_folder('1_6_3_1')">-</span>
+Hooker Valley Track
+<ul id="fold1_6_3_1" style="POSITION: relative; VISIBILITY: visible;"><li>4&#23567;&#26102;&#24448;&#36820;
+
+</li>
+
+</ul><p>&#23448;&#26041;&#32593;&#31449;&#27493;&#36947;&#20171;&#32461; http://www.doc.govt.nz/templates/trackandwalk.aspx?id=36336
+&#xa;    <img src="../../../../Desktop/20081230_cbf59d289bfda4600fbfKGCgGJlczN3J.jpg" >&#xa;  
+</li>
+</ul>
+</li>
+<li>Lake Pukaki
+
+</li>
+<li>&#22812;&#23487;Lake Tekapo
+
+</li>
+
+</ul>
+</li>
+<li>Sun, Apr 29
+<ul><li><span id="show1_7" class="foldclosed" onClick="show_folder('1_7')" style="POSITION: absolute">+</span> <span id="hide1_7" class="foldopened" onClick="hide_folder('1_7')">-</span>
+&#20174;Tekapo&#20986;&#21457;&#65292;&#21040;&#30343;&#21518;&#38215;
+<ul id="fold1_7" style="POSITION: relative; VISIBILITY: visible;"><li>263 km, 3 hours 14 mins
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_8" class="foldclosed" onClick="show_folder('1_8')" style="POSITION: absolute">+</span> <span id="hide1_8" class="foldopened" onClick="hide_folder('1_8')">-</span>
+&#36884;&#32463;Arrowtown
+<ul id="fold1_8" style="POSITION: relative; VISIBILITY: visible;"><li>&#20320;&#21487;&#20197;&#27839;&#31661;&#27827;&#36208;&#21040;&#24067;&#40065;&#21335;&#28193;&#21475;&#65292;&#20063;&#21487;&#20197;&#36208;&#21040;&#32500;&#23572;&#32771;&#26031;&#32511;&#22320;&#65292;&#36825;&#37324;&#23601;&#26159;&#24433;&#29255;&#20013;&#30340;&#26684;&#25289;&#39039;&#24179;&#21407;&#12290;
+
+</li>
+<li><span id="show1_8_1" class="foldclosed" onClick="show_folder('1_8_1')" style="POSITION: absolute">+</span> <span id="hide1_8_1" class="foldopened" onClick="hide_folder('1_8_1')">-</span>
+Arrowtown Autumn Festival 2012
+<ul id="fold1_8_1" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_8_1_1" class="foldclosed" onClick="show_folder('1_8_1_1')" style="POSITION: absolute">+</span> <span id="hide1_8_1_1" class="foldopened" onClick="hide_folder('1_8_1_1')">-</span>
+Date: 29 April, 2012 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Times: &nbsp;&nbsp;2pm 
+<ul id="fold1_8_1_1" style="POSITION: relative; VISIBILITY: visible;"><li><p>Let the Queenstown Historical Society take you on a fascinating tour around Arrowtown Cemetery. &nbsp;Experience history and characters brought to life with interesting stories about Arrowtown&#8217;s most notable residents and settlers buried here. Bring a chair. Where: &nbsp;Arrowtown Cemetery Cost: &nbsp;Free
+</li>
+</ul>
+</li>
+<li><span id="show1_8_1_2" class="foldclosed" onClick="show_folder('1_8_1_2')" style="POSITION: absolute">+</span> <span id="hide1_8_1_2" class="foldopened" onClick="hide_folder('1_8_1_2')">-</span>
+Date: 29 April, 2012 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Times: &nbsp;&nbsp;7.30pm 
+<ul id="fold1_8_1_2" style="POSITION: relative; VISIBILITY: visible;"><li><p>A festival favourite, the variety concert sees out the festival with performances from the best of our local talent and highlight performances from the festival. It&#8217;s always a sell out so come along and join us for a superb evening of music and merriment. &nbsp;&nbsp;Where: &nbsp;Athenaeum Hall Cost: &nbsp;$15
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_9" class="foldclosed" onClick="show_folder('1_9')" style="POSITION: absolute">+</span> <span id="hide1_9" class="foldopened" onClick="hide_folder('1_9')">-</span>
+Queenstown
+<ul id="fold1_9" style="POSITION: relative; VISIBILITY: visible;"><li><p><span id="show1_9_1" class="foldclosed" onClick="show_folder('1_9_1')" style="POSITION: absolute">+</span> <span id="hide1_9_1" class="foldopened" onClick="hide_folder('1_9_1')">-</span>
+Lake Wakatipu
+<ul id="fold1_9_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#30343;&#21518;&#38215;&#22253;&#26519;&#65288;Queenstown Gardens&#65289;&#65292;&#19977;&#38754;&#29615;&#29926;&#21345;&#33922;&#26222;&#28246;&#65288;Lake Wakatipu&#65289;&#65292;&#19968;&#38754;&#32039;&#37051;&#35834;&#23500;&#29305;&#28246;&#36793;&#37202;&#24215;&#65292;&#27839;&#37202;&#24215;&#21518;&#33457;&#22253;&#28246;&#30036;&#23567;&#36947;&#21487;&#30452;&#36890;&#20837;&#22253;&#12290;
+
+</li>
+
+</ul><p>&#32518;&#36710;Gondola skyline
+<p><span id="show1_9_2" class="foldclosed" onClick="show_folder('1_9_2')" style="POSITION: absolute">+</span> <span id="hide1_9_2" class="foldopened" onClick="hide_folder('1_9_2')">-</span>
+&#29305;&#33394;&#27721;&#22561;
+<ul id="fold1_9_2" style="POSITION: relative; VISIBILITY: visible;"><li>shotover street #42
+
+</li>
+
+</ul><p><span id="show1_9_3" class="foldclosed" onClick="show_folder('1_9_3')" style="POSITION: absolute">+</span> <span id="hide1_9_3" class="foldopened" onClick="hide_folder('1_9_3')">-</span>
+TBD
+<ul id="fold1_9_3" style="POSITION: relative; VISIBILITY: visible;"><li><p>&#22352;&#32518;&#36710;&#19978;&#23665;&#65292;&#30475;&#30475;Wakatipu&#28246;&#65292;&#29609;&#36454;&#26497; &#28369;&#32724;&#20254;&nbsp;&#28369;&#32724;&#32764; &#21943;&#27668;&#33337;&nbsp;&#36339;&#20254;&#31561;&#26497;&#38480;&#27963;&#21160;
+<p> &#21621;&#21621;&#65292;&#21015;&#19979;&#30343;&#21518;&#38215;&#30340;&#27963;&#21160;&nbsp;&nbsp;ADVANTURE--AIR &nbsp;&#65288;&#21319;&#31354;&#65289;&nbsp;&nbsp;1.JAG AIR LIMITED WWW.JAGAIR.CO.NZ 2.NZONE THE ULTIMATE JUMP WWW.NZONE.BIZ 3.QUEENSTOWN PARAFLIGHTS WWW.PARAFLIGHTS.CO.NZ 4.SUNRISE BALLOONS WWW.BALLOONINGNZ.COM &nbsp;BUNGY &#65288;&#36454;&#26497;&#65289;&nbsp;QUEENSTOWN BUNGY CENTRE WWW.BUNGY.CO.NZ &nbsp;CLIMBING &nbsp;&#25856;&#30331;&nbsp;THE RUNGWAY WWW.RUNGWAY.CO.NZ &nbsp;HORSE RIDING--GLENOCHY &#39569;&#39532;&nbsp;HIGH COUNTRY HORSES WWW.HIGH-COUNTRY-HORSES.CO.NZ &nbsp;JET BOATING &nbsp;&nbsp;&#27668;&#22443;&#33337;&nbsp;1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DART RIVER JET SAFARIS WWW.DARTRIVERJETSAFARIS.COM 2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KAWARAU JET WWW. KJET.CO.NZ 3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHOTOVER JET WWW.SHOTOVERJET.COM &nbsp;OFF ROADING OFF ROAD ADVANTURES WWW.OFFROAD.CO.NZ &nbsp;ATTRACTION KIWI BIRDLIFE PARK WWW.KIWIBIRD.CO.NZ &nbsp;LAKES DISTRICT MUSEUM WWW.MUSEUMQUEENSTOWN.COM &nbsp;MINUS 5 WWW.MINUS5EXPERIENCE.COM &nbsp;TSS EARNSLAW/WALTER PEAK HIGH COUNTRY FARM WWW.REALJOURNEYS.CO.NZ &nbsp;GOLF MILLBROOK RESORT WWW.MILLBROOK.CO.NZ &nbsp;SCENIC FLIGHTS 1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALPINE CHOPPERS WWW.ALPINECHOPPERS.CO.NZ 2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OVER THE TOP WWW.FLYNZ.CO.NZ &nbsp;SIGHTSEEING &amp; TRANSPORT 1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONNECTABUS WWW.CONNECTABUS.COM 2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DOUBLE DECKER BUS WWW.DOUBLEDECKERBUS.CO.NZ &nbsp;SKI 1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALPINE HELI-SKI LTD WWW.ALPINEHELISKI.COM 2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARDRONA ALPINE RESORT &nbsp;---WANAKA WWW.CARDRONA.COM 3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CORONET PEAK SKI AREA WWW.NZSKI.COM 4. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTSIDE SPORTS WWW.OUTSIDESPORTS.CO.NZ 5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QUEST SNOW CENTRE WWW.QUESTSTORE.CO.NZ 6. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THE REMARKABLES SKI AREA WWW.NZSKI.COM &nbsp;&#20174;&#30343;&#21518;&#38215;&#20986;&#21457;&#21069;&#24448;&#23777;&#28286;&#30340;&#26377;&#20197;&#19979;&nbsp;1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DOUBTFUL SOUND, REAL JOURNEYS WWW.REALJOURNEYS.CO.NZ 2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DISCOVER MILFORD SOUND WITH GREAT SIGHTS WWW.GREATSIGHTS.CO.NZ 3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MILFORD SOUND ECO TOURS WWW.ECOTOURS.NET.NZ 4. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MILFORD SOUND, REAL JOURNEYS WWW.REALJOURNEYS.CO.NZ 5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MILFORD SOUND SELECT WWW.MILFORDSOUNDSELECT.COM
+</li>
+</ul><p> &#30343;&#21518;&#38215;: &#33509;&#24819;&#21507;&#39039;&#20415;&#23452;&#31616;&#21333;&#30340;&#23567;&#21507;&#65292;&#21516;&#26102;&#21448;&#33021;&#20139;&#21463;&#30343;&#21518;&#38215;&#28246;&#36793;&#30340;&#32654;&#26223;&#65292;&#21487;&#21040;Planet 1&#39184;&#21381;&#12290;&#22312;&#20248;&#32654;&#30340;&#28246;&#20809;&#23665;&#33394;&#20013;&#21697;&#23581;&#32654;&#39135;&#65292;&#21487;&#20197;&#35828;&#26159;&#30343;&#21518;&#38215;&#30340;&#19987;&#21033;&#12290;&#20063;&#21487;&#20197;&#36873;&#25321;&#21040;Vudu&#21654;&#21857;&#21381;&#65292;&#24744;&#21487;&#20197;&#21644;&#24403;&#22320;&#20154;&#19968;&#36215;&#20139;&#29992;&#20581;&#24247;&#30340;&#31859;&#39135;&#12289;&#34092;&#33756;&#21644;&#20840;&#38215;&#26368;&#22909;&#30340;&#29305;&#21046;&#33098;&#32928;&#12290; &#12288;&#12288;&#21478;&#19968;&#23478;&#20540;&#24471;&#25512;&#33616;&#30340;&#26159;Leonardo's&#39184;&#21381;&#65292;&#20379;&#24212;&#32654;&#21619;&#30340;&#26089;&#39184;&#19982;&#19977;&#26126;&#27835;&#12290;&#25380;&#36827;&#36141;&#29289;&#21830;&#22330;&#37324;&#23567;&#23567;&#30340;Squeeze&#39184;&#21381;&#65292;&#26469;&#19968;&#20221;&#27987;&#27748;&#21644;&#22909;&#21507;&#30340;&#36125;&#26524;&#19977;&#26126;&#27835;&#65292;&#19968;&#20010;&#32654;&#22909;&#30340;&#26089;&#26216;&#23601;&#27492;&#23637;&#24320;&#12290;&#30343;&#21518;&#38215;&#21306;&#30340;&#21478;&#19968;&#31471;&#65292;&#24744;&#21487;&#20197;&#22312;Take Five&#20080;&#19968;&#26479;&#39321;&#27987;&#30340;&#21654;&#21857;&#25110;&#26524;&#27713;&#65292;&#22352;&#22312;&#27773;&#33337;&#30721;&#22836;(Steamer Wharf)&#30340;&#37326;&#39184;&#26700;&#19978;&#20139;&#29992;&#12290; &#12288;&#12288;&#28246;&#36793;&#30721;&#22836;&#65288;Steamer Wharf&#65289;&#30340;Lagos Bar &amp; Cafe, Take 5 Expresso &amp; Juice Bar&#20063;&#26377;&#22909;&#21507;&#30340;&#22521;&#26524;&#19982;&#27987;&#37255;&#30340;&#21508;&#24335;&#21654;&#21857;&#65292;&#19982;&#32654;&#20029;&#28246;&#27700;&#21450;&#28783;&#20809;&#33829;&#36896;&#30340;&#27668;&#27675;&#30456;&#25645;&#37197;&#65292;&#31616;&#30452;&#23436;&#32654;&#26080;&#29781;&#12290; &#12288;&#12288;&#22312;&#30343;&#21518;&#38215;&#29992;&#26202;&#39184;&#26159;&#20214;&#37325;&#35201;&#30340;&#20107;&#24773;&#65292;&#24744;&#21487;&#20197;&#26377;&#36229;&#36807;&#19968;&#30334;&#31181;&#36873;&#25321;&#12290;&#32654;&#22269;&#21069;&#24635;&#32479;&#20811;&#26519;&#39039;&#26366;&#22312;&#27773;&#33337;&#30721;&#22836;&#30340;Boardwalk&#39184;&#21381;&#23581;&#36807;&#20975;&#25705;&#20122;&#37027;(&#28023;&#40092;) &#65307;&#24744;&#20063;&#21487;&#20197;&#21040;&#31661;&#38215;(Arrowtown)&#30340;Saffron&#39184;&#21381;&#12289;&#20122;&#29791;&#35282;(Arthur's Point)&#30340;Gantley'&#39184;&#21381;&#12289;&#30343;&#21518;&#38215;&#30340;Tatlers&#12289;The Bunker&#12289;Frasers&#21450;Minami Jujisei&#31561;&#39184;&#21381;&#65292;&#37117;&#20379;&#24212;&#39030;&#32423;&#30340;&#28023;&#40092;&#65292;&#26159;&#20139;&#29992;&#26202;&#39184;&#30340;&#22909;&#22320;&#26041;&#12290; &#12288;&#12288;&#24819;&#21507;&#28857;&#23478;&#20065;&#21475;&#21619;&#30340;&#20154;&#65292;&#20301;&#20110;&#28023;&#28393;&#34903;(Beach St.)&#19978;&#30340;&#25991;&#21326;&#37202;&#23478;&#20197;&#21450;&#21033;&#26031;&#34903;&#19978;&#30340;&#28246;&#26223;&#30343;&#23467;&#37117;&#26159;&#20197;&#20013;&#21326;&#26009;&#29702;&#20026;&#20027;&#12290;&#31616;&#21333;&#30340;&#28903;&#33098;&#21450;&#38754;&#31867;&#37117;&#36824;&#19981;&#38169;&#65292;&#20215;&#26684;&#36824;&#19981;&#31639;&#26114;&#36149;&#12290; &#12288;&#12288;&#21478;&#22806;&#20540;&#24471;&#19968;&#25552;&#30340;&#26159;&#28903;&#32650;&#32905;&#19982;&#37221;&#30382;&#21367;&#65292;&#36825;&#20004;&#39033;&#32654;&#39135;&#19968;&#30452;&#37117;&#20026;&#26032;&#35199;&#20848;&#30340;&#20256;&#32479;&#39135;&#29289;&#12290;&#20294;&#36817;&#20960;&#24180;&#26469;&#65292;&#20197;&#32650;&#20026;&#20027;&#30340;&#26032;&#35199;&#20848;&#33756;&#24050;&#32463;&#33073;&#31163;&#20102;&#33521;&#22269;&#39118;&#21619;&#30340;&#28921;&#35843;&#26041;&#27861;&#65292;&#29616;&#21478;&#26377;&#29420;&#26641;&#19968;&#24092;&#30340;&#39118;&#26684;&#12290;
+</li>
+</ul>
+</li>
+<li>&#22812;&#23487;Queenstown
+
+</li>
+
+</ul>
+</li>
+<li>Mon, Apr 30
+<ul><li>&#39550;&#36710;&#21040;Milford Sound
+<ul><li>286 km &#8211;&nbsp;about 3 hours 28 mins
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_10" class="foldclosed" onClick="show_folder('1_10')" style="POSITION: absolute">+</span> <span id="hide1_10" class="foldopened" onClick="hide_folder('1_10')">-</span>
+&#28216;&#33337;Milford Sound
+<ul id="fold1_10" style="POSITION: relative; VISIBILITY: visible;"><li>http://www.realjourneys.co.nz/Main/MilfordSound/
+
+</li>
+<li>http://www.bookme.co.nz/bookings/queenstown/activities/Attractions/Milford%20Sound/nextPage
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_11" class="foldclosed" onClick="show_folder('1_11')" style="POSITION: absolute">+</span> <span id="hide1_11" class="foldopened" onClick="hide_folder('1_11')">-</span>
+&#39550;&#36710;&#21040;Te Anau
+<ul id="fold1_11" style="POSITION: relative; VISIBILITY: visible;"><li><p>&#33922;&#38463;&#29785;&#21644;&#29595;&#32435;&#26222;&#21033;&#20043;&#38388;&#30340;&#24576;&#22885;&#27827;&#23601;&#26159;&#24433;&#29255;&#20013;&#30340;&#23433;&#37117;&#22240;&#27827;&#65292;&#25252;&#25106;&#20351;&#32773;&#23601;&#26159;&#27839;&#36825;&#26465;&#27827;&#20174;&#32599;&#26031;&#27931;&#37324;&#23433;&#21010;&#33337;&#21335;&#34892;&#65292;&#32780;&#21608;&#22260;&#39640;&#32824;&#30340;&#23665;&#23792;&#21017;&#26159;&#24433;&#29255;&#20013;&#29615;&#22659;&#24694;&#21155;&#30340;&#29790;&#25991;&#25140;&#23572;&#21335;&#37096;&#22320;&#21306;&#12290; &nbsp;&#22612;&#21345;&#32599;&#20844;&#36335;&#31163;&#33922;&#38463;&#29785;&#24456;&#36817;&#65292;&#29255;&#20013;&#30340;&#27861;&#36129;&#26862;&#26519;&#23601;&#21462;&#33258;&#20844;&#36335;&#20004;&#26049;&#30340;&#26223;&#33394;&#65292;&#32465;&#22312;&#39640;&#22788;&#32499;&#32034;&#19978;&#30340;&#36965;&#25511;&#25668;&#24433;&#26426;&#25293;&#25668;&#20102;&#38463;&#25289;&#36129;&#22312;&#26519;&#38388;&#31359;&#34892;&#30340;&#22330;&#26223;&#12290;&#22914;&#26524;&#20320;&#24819;&#21435;&#27861;&#36129;&#26862;&#26519;&#19968;&#25506;&#31350;&#31455;&#65292;&#21487;&#20197;&#35810;&#38382;&#21069;&#24448;&#38518;&#32771;&#32599;&#20844;&#36335;&#30340;&#36335;&#32447;&#12290;&nbsp;&nbsp;&#22312;&#33922;&#38463;&#29785;&#65292;&#20320;&#21487;&#20197;&#20056;&#22352;&#21943;&#27668;&#24335;&#24555;&#33351;&#28216;&#35272;&#23433;&#37117;&#22240;&#27827;&#65292;&#22312;&#31070;&#22855;&#23777;&#28286;&#30340;&#28216;&#33337;&#19978;&#20957;&#26395;&#36855;&#38654;&#23665;&#65292;&#25110;&#27839;&#30528;&#24320;&#26222;&#21202;&#27493;&#36947;&#20307;&#39564;&#27839;&#36884;&#32654;&#26223;&#12290;
+</li>
+</ul>
+</li>
+<li>&#22812;&#23487;Te Anau
+<ul><li><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Te Anau&#28246;&#26159;&#26032;&#35199;&#20848;&#30340;&#31532;&#20108;&#22823;&#28246;&#65292;Te Anau&#23567;&#38215;&#30830;&#26159;&#19968;&#20010;&#38750;&#24120;&#23567;&#32780;&#23425;&#38745;&#30340;&#38215;&#65292;&#20154;&#21475;&#31232;&#23569;&#12290;&#20294;&#26159;&#65292;&#22240;&#20026;&#21435;&#31859;&#23572;&#31119;&#24503;&#23777;&#28286;&#65292;&#36825;&#20010;&#38215;&#26159;&#24517;&#32463;&#20043;&#36335;&#65288;&#20063;&#26159;&#24456;&#22810;&#28216;&#23458;&#30340;&#20013;&#36716;&#31449;&#65292;&#21253;&#25324;&#25105;&#20204;&#65289;&#65292;&#25152;&#20197;&#23567;&#38215;&#30340;&#26053;&#28216;&#19994;&#38750;&#24120;&#21457;&#36798;&#12290;&#25105;&#30456;&#20449;&#22312;&#26053;&#28216;&#30340;&#26106;&#23395;&#65292;&#36825;&#37324;&#24212;&#35813;&#20063;&#26159;&#38750;&#24120;&#28909;&#38393;&#30340;&#12290;&#33922;&#38463;&#29785;&#36824;&#26159;&#19968;&#20010;&#26368;&#20339;&#35266;&#26143;&#22320;&#65292;&#25454;&#35828;&#22825;&#27668;&#26228;&#26391;&#30340;&#22812;&#26202;&#65292;&#21487;&#20197;&#28165;&#26970;&#22320;&#30475;&#21040;&#21335;&#21313;&#23383;&#26143;&#65288;&#21487;&#24796;&#65292;&#21487;&#33021;&#26159;&#23395;&#33410;&#30340;&#20851;&#31995;&#65292;&#25105;&#20204;&#24182;&#27809;&#26377;&#30475;&#21040;&#65289;&#12290;&#20854;&#38468;&#36817;&#36824;&#26377;&#19968;&#20010;&#38750;&#24120;&#33879;&#21517;&#30340;&#33828;&#28779;&#34411;&#27934;&#65292;&#24456;&#22810;&#28216;&#23458;&#20250;&#21442;&#21152;&#36825;&#20010;&#33828;&#28779;&#34411;&#27934;&#20043;&#26053;&#12290;&#20294;&#26159;&#65292;&#25454;&#21435;&#36807;&#30340;&#32593;&#21451;&#31216;&#65292;&#36825;&#20010;&#33828;&#28779;&#34411;&#27934;&#23454;&#22312;&#19981;&#24590;&#20040;&#26679;&#65292;&#24615;&#20215;&#27604;&#22826;&#20302;&#12290;&#25105;&#20204;&#34892;&#31243;&#27604;&#36739;&#32039;&#65292;&#20063;&#23601;&#27627;&#19981;&#29369;&#35947;&#22320;&#36807;&#28388;&#25481;&#36825;&#31181;&#20215;&#27604;&#20302;&#30340;&#27963;&#21160;&#20102;&#12290; 
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li>May 1
+<ul><li>&#20174;Te Anau&#20986;&#21457;&#65292;&#21040;Glenorchy/Paradise
+
+</li>
+<li><span id="show1_12" class="foldclosed" onClick="show_folder('1_12')" style="POSITION: absolute">+</span> <span id="hide1_12" class="foldopened" onClick="hide_folder('1_12')">-</span>
+Glenorchy
+<ul id="fold1_12" style="POSITION: relative; VISIBILITY: visible;"><li><p>&#36335;&#27604;&#26223;&#32654;
+<p>Nugget poit&#30475;&#26085;&#33853;
+<p>http://www.glenorchyaccommodation.co.nz/activities/
+<p>&#26684;&#26519;&#35834;&#22855;&#26449;&#65288;Glenorchy&#65289;&#20301;&#20110;&#29926;&#21345;&#33922;&#26222;&#28246;&#21271;&#23736;&#65292;&#22312;&#36825;&#37324;&#20320;&#21487;&#20197;&#30475;&#21040;&#24681;&#26031;&#27931;&#23665;&#35199;&#21271;&#22369;&#65292;&#21363;&#24433;&#29255;&#20013;&#30340;&#36855;&#38654;&#23665;&#65292;&#21363;&#25252;&#25106;&#20351;&#32773;&#35797;&#22270;&#31359;&#36807;&#32418;&#35282;&#38552;&#21475;&#30340;&#22320;&#26041;&#12290;&#20320;&#36824;&#21487;&#20197;&#22312;&#26684;&#26519;&#35834;&#22855;&#26449;&#25214;&#21040;&#32599;&#26031;&#27931;&#37324;&#23433;&#8212;&#8212;&#36890;&#21521;&#24085;&#25289;&#20195;&#26031;&#20043;&#36335;&#30340;&#27611;&#27017;&#26641;&#26519;&#12290;
+</li>
+</ul>
+</li>
+<li><span id="show1_13" class="foldclosed" onClick="show_folder('1_13')" style="POSITION: absolute">+</span> <span id="hide1_13" class="foldopened" onClick="hide_folder('1_13')">-</span>
+Wanaka
+<ul id="fold1_13" style="POSITION: relative; VISIBILITY: visible;"><li><p>https://bayviewwanakaconz.sites.acclipse.com/booking/book_now/booknownew?reset=true&amp;op=bayviewm76&amp;pid=6218
+<p> http://www.lakewanaka.co.nz/index.cfm/Home http://www.wanaka.com/ http://www.destination.co.nz/wanaka/ &nbsp;New Zealand Fighter Pilots Museum &nbsp;www.nzfpm.co.nz &nbsp;Skydive Lake Wanaka www.skydivewanaka.com &nbsp;&nbsp;Wanaka Helicopters &nbsp;www.heliflights.co.nz &nbsp;Wanaka Beerworks www.wanakabeerworks.co.nz &nbsp;&#24403;&#22320;&#26223;&#28857;&#27493;&#36947;&nbsp;http://www.lakewanaka.co.nz/index.cfm/National_Park/Scenic_Walks &nbsp;&#22320;&#21306;&#30701;&#36884;&#27493;&#36947;&nbsp;http://www.lakewanaka.co.nz/index.cfm/National_Park/Short_Walks &nbsp;&#38271;&#36884;&#27493;&#36947;&nbsp;http://www.lakewanaka.co.nz/inde ... rk/Walks_and_Tramps
+<p><span id="show1_13_1" class="foldclosed" onClick="show_folder('1_13_1')" style="POSITION: absolute">+</span> <span id="hide1_13_1" class="foldopened" onClick="hide_folder('1_13_1')">-</span>
+&#22805;&#38451;&#25110;&#26085;&#20986;
+<ul id="fold1_13_1" style="POSITION: relative; VISIBILITY: visible;"><li><p>&#29096;&#26007;&#23665; (Mount Iron) &#22806;&#24418;&#24456;&#35937;&#29096;&#26007;&#30340;&#29096;&#26007;&#23665;&#26159;&#24403;&#22320;&#30340;&#19968;&#20010;&#33879;&#21517;&#22320;&#29702;&#26631;&#24535;&#65292;&#32824;&#31435;&#22312;&#31163;&#24320;&#29926;&#32435;&#21345;&#28246;&#30340;&#30036;&#32531;&#22369;&#19978;&#12290;&#29096;&#26007;&#23665;&#26159;&#21476;&#32769;&#30340;&#20912;&#27827;&#36951;&#36857;&#65292;&#30331;&#29096;&#26007;&#23665;&#39030;&#23792;&#21487;&#20463;&#30640;&#22235;&#21608;&#23665;&#35895;&#12289;&#23665;&#23792;&#12289;&#27827;&#27969;&#21644;&#28246;&#27850;&#12290;&#28459;&#27493;&#29615;&#29366;&#30340;&#35266;&#20809;&#26632;&#36947;&#65292;&#31359;&#36807;&#33609;&#19995;&#21644;&#26494;&#32418;&#26757;&#28748;&#26408;&#26519;&#65292;&#28107;&#28020;&#22312;&#38451;&#20809;&#37324;&#65292;&#21040;&#36798;&#24179;&#22374;&#30340;&#39030;&#23792;&#65292;&#20877;&#27839;&#21040;&#29096;&#26007;&#23665;&#30340;&#21335;&#20391;&#22369;&#19979;&#21435;.
+<p>&#32599;&#20234;&#23665; (Mount Roy) &#39640;&#36798;&#21315;&#31859;&#30340;&#32599;&#20234;&#23665;&#31163;&#29926;&#32435;&#21345;&#21482;&#26377;&#20960;&#20998;&#38047;&#30340;&#36710;&#31243;&#65292;&#26159;&#20010;&#36866;&#21512;&#20840;&#22825;&#24466;&#27493;&#36828;&#36275;&#30340;&#22909;&#22320;&#26041;&#12290;&#19968;&#26465;&#24367;&#24367;&#26354;&#26354;&#30340;&#26632;&#36947;&#31359;&#36807;&#27987;&#23494;&#30340;&#37329;&#40644;&#33394;&#33609;&#19995;&#65292;&#30452;&#36798;&#31354;&#27668;&#23452;&#20154;&#30340;&#23665;&#39030;&#12290;&#22312;&#23665;&#39030;&#19978;&#21487;&#20463;&#26395;&#29926;&#32435;&#21345;&#28246;&#30340;&#23707;&#23679;&#21644;&#27827;&#21475;&#65292;&#36824;&#21487;&#30475;&#21040;&#38463;&#26031;&#27966;&#26519;(Mount Aspirin)/&#25552;&#25552;&#33922;&#20122;(Tititea)&#23665;&#30340;&#23665;&#23792;&#12290;
+</li>
+</ul></li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li>May 2
+<ul><li>&#23487;Wanaka
+<ul><li><p>&#29926;&#32435;&#21345;&#65288;Wanaka&#65289;&#38215; &nbsp;&nbsp;&#29926;&#32435;&#21345;&#21495;&#31216;&#26032;&#35199;&#20848;&#31532;&#22235;&#22823;&#28246;&#65292;&#19982;&#28246;&#21516;&#21517;&#23567;&#38215;&#8212;&#8212;&#29926;&#32435;&#21345;&#38215;&#65292;&#22352;&#33853;&#20110;&#29926;&#32435;&#21345;&#28246;&#21335;&#31471;&#30340;&#40065;&#29926;&#28286;&#65288;Roys Bay&#65289;&#30036;&#12290;&#34892;&#25919;&#38582;&#23646;&#22885;&#22612;&#21733;&#22823;&#21306;&#65292;&#20840;&#22495;&#38754;&#31215;&#65306;4776&#24179;&#26041;&#20844;&#37324;&#65292;&#20154;&#21475;&#65306;4500&#20154;&#12290;&#26159;&#36890;&#24448;&#38463;&#26031;&#24085;&#26519;&#23665;&#22269;&#23478;&#20844;&#22253;&#65288;Mount Aspiring National Park&#65289;&#20197;&#21450;&#33922;&#29926;&#24076;&#26222;&#32435;&#31302;&#19990;&#30028;&#36951;&#20135;&#22320;&#21306;&#65288;Te Wahipounamu&#65289;&#30340;&#38376;&#25143;&#20043;&#22320;&#12290;&#30001;&#20110;&#27492;&#22320;&#32676;&#23665;&#29615;&#32469;&#22235;&#21608;&#65292;&#39640;&#23665;&#28145;&#28246;&#28857;&#32512;&#20854;&#38388;&#65292;&#22240;&#32780;&#34987;&#20844;&#35748;&#20026;&#26032;&#35199;&#20848;&#39118;&#26223;&#26368;&#20248;&#32654;&#30340;&#22320;&#21306;&#20043;&#19968;&#65292;&#20063;&#26159;&#22235;&#23395;&#23452;&#20154;&#30340;&#24230;&#20551;&#32988;&#22320;&#12290; &nbsp;&nbsp;&#25454;&#26032;&#35199;&#20848;&#26053;&#28216;&#23616;&#23448;&#26041;&#32593;&#31449;&#23186;&#20307;&#36164;&#28304;&#19987;&#26639;&#20171;&#32461;&#65306;&#29926;&#32435;&#21345;&#30340;&#21517;&#23383;&#26159;&#30001;"&#22885;&#32435;&#21345;"&#65288;Oanaka&#65289;&#28436;&#21464;&#32780;&#26469;&#30340;&#65292;&#21518;&#32773;&#24847;&#20026;"&#38463;&#32435;&#21345;&#65288;Anaka&#65289;&#30340;&#39046;&#22320;"&#12290;&#38463;&#32435;&#21345;&#21407;&#20026;&#35813;&#22320;&#21306;&#19968;&#20301;&#26089;&#26399;&#30340;&#27611;&#21033;&#39318;&#39046;&#12290;&#22312;&#21313;&#20061;&#19990;&#32426;&#65292;&#29926;&#32435;&#21345;&#19968;&#35789;&#26159;&#25351;&#19968;&#20010;&#23567;&#33539;&#22260;&#30340;&#27611;&#21033;&#37096;&#33853;&#23621;&#20303;&#22320;&#65292;&#20027;&#35201;&#26159;&#22312;&#22799;&#23395;&#32858;&#23621;&#27492;&#22320;&#12290;&#20294;&#21040; 1836 &#24180;&#65292;&#36825;&#19968;&#23621;&#20303;&#22320;&#36973;&#21040;&#20102;&#19968;&#25903;&#22909;&#25112;&#30340;&#21271;&#26041;&#27611;&#21033;&#37096;&#33853;&#30340;&#20405;&#30053;&#65292;&#20854;&#20013;&#22823;&#37096;&#20998;&#24050;&#34987;&#25703;&#27585;&#12290;&nbsp;&nbsp;&nbsp;&#22856;&#33832;&#23433;&#23612;&#23572;&#8226;&#26597;&#33707;&#26031;&#65288;Nathaniel Chalmers&#65289;&#25454;&#35828;&#26159;&#20110; 1853 &#24180;&#21457;&#29616;&#36825;&#24231;&#28246;&#27850;&#30340;&#31532;&#19968;&#20301;&#27431;&#27954;&#20154;&#12290;&#20294;&#30452;&#33267;&#21313;&#20061;&#19990;&#32426;&nbsp;70 &#24180;&#20195;&#22312;&#24403;&#22320;&#21457;&#29616;&#40644;&#37329;&#21518;&#65292;&#20154;&#20204;&#25165;&#24320;&#22987;&#34562;&#25317;&#32780;&#33267;&#12290;&#23588;&#20854;&#26159;&#20135;&#37329;&#37327;&#26497;&#22823;&#30340;&#20811;&#40065;&#33832;&#27827;&#65288;Clutha River&#65289;&#8212;&#8212;&#26368;&#39640;&#23792;&#26102;&#65292;&#27827;&#38754;&#19978;&#26366;&#32858;&#38598;&#20102; 187 &#33368;&#28120;&#37329;&#33337;&#12290;&nbsp;&nbsp;&nbsp;1863 &#24180;&#65292;&#33521;&#22269;&#24067;&#25919;&#21496;&#23558;&#29926;&#32435;&#21345;&#21629;&#21517;&#20026;"&#24429;&#24067;&#32599;&#20811;"&#65288;Pembroke&#65289;&#12290;&#20294;&#21040;&#20102; 1940 &#24180;&#65292;&#23567;&#38215;&#21448;&#37325;&#26032;&#26356;&#21517;&#20026;&#29926;&#32435;&#21345;&#12290;&#20056;&#22352;&nbsp;1881 &#24180;&#24314;&#36896;&#30340;&#26126;&#36718;&#33337;&#21069;&#24448;&#29926;&#32435;&#21345;&#28246;&#30340;&#23613;&#22836;&#65292;&#20320;&#23558;&#26469;&#21040;&#19968;&#20010;&#32654;&#22937;&#26080;&#27604;&#30340;&#24230;&#20551;&#32988;&#22320;&#12290;&nbsp;
+<p>puzzle world
+</li>
+</ul>
+</li>
+<li>Lake HAWEA
+
+</li>
+<li>&#23487;Fox Glacier
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_14" class="foldclosed" onClick="show_folder('1_14')" style="POSITION: absolute">+</span> <span id="hide1_14" class="foldopened" onClick="hide_folder('1_14')">-</span>
+May 3
+<ul id="fold1_14" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_14_1" class="foldclosed" onClick="show_folder('1_14_1')" style="POSITION: absolute">+</span> <span id="hide1_14_1" class="foldopened" onClick="hide_folder('1_14_1')">-</span>
+&#19968;&#26089;&#28216;&#35272;Lake Matheson
+<ul id="fold1_14_1" style="POSITION: relative; VISIBILITY: visible;"><li><p>&#26368;&#20339;&#35266;&#26223;&#28857;&#26159;Reflection Island
+<p>&#31119;&#20811;&#26031;&#26449;&#21040;&#39532;&#22622;&#36874;&#28246;&#26223;&#21306;&#38376;&#21475;&#26159;6&#20844;&#37324;&#65292;&#20174;&#26223;&#21306;&#20869;&#25293;&#29031;&#26368;&#20339;&#20301;&#32622;&#36208;&#20986;&#26469;&#21482;&#38656;20&#22810;&#20998;&#38047;&#12290;&#36825;&#20010;&#22320;&#26041;&#23601;&#22312;&#29615;&#28246;&#30340;&#23567;&#36335;&#36793;&#24456;&#22909;&#25214;&#65292;&#26159;&#19968;&#20010;&#25645;&#26377;&#20108;&#23618;&#26408;&#32467;&#26500;&#30340;&#35266;&#26223;&#21488;&#65292;&#19979;&#23618;&#22312;&#28246;&#38754;&#19978;&#12290;&#36827;&#20837;&#26223;&#21306;&#30475;&#21040;&#21491;&#36716;&#30340;&#23567;&#36335;&#36870;&#26102;&#38024;&#29615;&#28246;&#65292;&#23601;&#26159;&#19978;&#38754;&#20986;&#26469;&#30340;&#36335;&#12290;&#35831;&#27880;&#24847;&#36890;&#24120;&#28216;&#23458;&#37117;&#20250;&#39034;&#26102;&#38024;&#29615;&#28246;&#32469;&#34892;&#35266;&#26223;&#65292;&#36825;&#26679;&#36208;&#21040;&#19978;&#36848;&#35266;&#26223;&#21488;&#38656;&#19968;&#20010;&#22810;&#23567;&#26102;&#12290;
+</li>
+</ul>
+</li>
+<li><span id="show1_14_2" class="foldclosed" onClick="show_folder('1_14_2')" style="POSITION: absolute">+</span> <span id="hide1_14_2" class="foldopened" onClick="hide_folder('1_14_2')">-</span>
+&#20912;&#24029;hiking
+<ul id="fold1_14_2" style="POSITION: relative; VISIBILITY: visible;"><li><p><span id="show1_14_2_1" class="foldclosed" onClick="show_folder('1_14_2_1')" style="POSITION: absolute">+</span> <span id="hide1_14_2_1" class="foldopened" onClick="hide_folder('1_14_2_1')">-</span>
+sunset
+<ul id="fold1_14_2_1" style="POSITION: relative; VISIBILITY: visible;"><li> 6&#21495;&#20844;&#36335;&#65288;6 Main road&#65289;&#24320;&#21040;Cook Flat road&#21521;&#24038;&#36716;&#65292;&#36825;&#26465;&#19968;&#30452;&#21521;&#35199;&#30340;Cook Flat road&#34987;&#24456;&#22810;&#26053;&#34892;&#32773;&#31216;&#20026;&#8220;&#26085;&#33853;&#22823;&#36947;&#8221;&#65292;&#22312;&#36825;&#26465;&#36335;&#19978;&#33021;&#30475;&#21040;&#33853;&#26085;&#19979;&#30340;&#20912;&#24029;&#19982;&#38634;&#23665;&#65292;&#24456;&#22766;&#35266;&#12290;
+
+</li>
+
+</ul><p>&#19968;&#26085;&#30340;&#27809;&#20160;&#20040;&#24847;&#24605;&#65292;&#27604;&#21322;&#26085;&#30340;&#20063;&#36208;&#19981;&#20102;&#22810;&#36828;&#12290;&#32780;&#19988;&#25105;&#20307;&#21147;&#19968;&#21322;&#65292;&#36208;&#21322;&#26085;&#30340;&#37117;&#35273;&#24471;&#27809;&#20160;&#20040;&#24847;&#24605;&#12290;FOX &#30340;&#21322;&#26085;&#36229;&#32423;&#38391;&#65292;1&#20010;&#22810;&#23567;&#26102;&#36208;&#23665;&#36335;&#65292;&#24456;&#27809;&#24847;&#24605;&#12290;&#35201;&#26159;&#26377;&#22810;&#39044;&#31639;&#21487;&#20197; fRANZ JOSEPH HELI HIKE&#65292;&#30475;&#30340;&#26223;&#33394;&#24456;&#22766;&#35266;&#65292;&#36208;2&#20010;&#23567;&#26102;&#20063;&#21018;&#22909;&#12290;&#26202;&#19978;&#21487;&#20197;&#21435;&#27873;&#20010;&#28201;&#27849;&#12290;FOX &#22826;&#23567;&#65292;&#27809;&#20160;&#20040;&#20854;&#20182;&#27963;&#21160;&#20102;&#12290;&#65288;All Day Walk&#21382;&#26102;&#23558;&#36817;7&#20010;&#23567;&#26102;&#65289;
+<p> &#20912;&#24029;&#30340;&#21508;&#39033;&#27963;&#21160;&nbsp;&nbsp;SCENIC FLIGHTS 1. AIR SAFARIS &nbsp;&nbsp;&nbsp;WWW.AIRSAFARIS.CO.NZ 2. FOX GLACIER AND FRANZ JOSEF HELISERVICES &nbsp;&nbsp;&nbsp;WWW.SCENIC-FLIGHTS.CO.NZ 3. GLACIER COUNTRY SCENIC FLIGHTS &nbsp;&nbsp;&nbsp;WWW.GLACIERADVENTURES.CO.NZ 4. GLACIER HELICOPTERS &nbsp;&nbsp;&nbsp;WWW.GLACIERHELICOPTERS.CO.NZ 5. MOUNT COOK SKI PLANES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(HAVE QUALMARK) &nbsp;&nbsp;&nbsp;WWW.MTCOOKSKIPLANES.COM 6. MOUNTAIN HELICOPTERS &nbsp;&nbsp;&nbsp;WWW.MOUNTAINHELICOPTERS.CO.NZ 7. THE HELICOPTER LINE &nbsp;&nbsp;&nbsp;WWW.HELICOPTER.CO.NZ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(HAVE QUALMARK) 8. FOX GLACIER GUIDING &nbsp;&nbsp;&nbsp;WWW.FOXGUIDES.CO.NZ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(HAVE QUALMARK) 9. FRANZ JOSEF GALCIER GUIDES &nbsp;&nbsp;&nbsp;WWW.FRANZJOSEFGLACIER.COM 10. HELIHIKE FRANZ JOSEF GLACIER &nbsp;&nbsp;&nbsp;WWW.HELICOPTER.CO.NZ 11. HELIHIKES, ICE CLIMBING &amp; MOUNTAINEERING, FOX GLACIER &nbsp;&nbsp;&nbsp;&nbsp;WWW.FOXGUIDES.CO.NZ &nbsp;ACTIVITIES 1. ACROSS COUNTRY QUAD BIKES FRANZ JOSEF &nbsp;&nbsp;&nbsp;WWW.ACROSSCOUNTRYQUADBIKES.CO.NZ 2. BEAUMONT BUGGYS &nbsp;&nbsp;&nbsp;FRANZBUGGYS@XTRA.CO.NZ 3. ECO RAFTING &nbsp;&nbsp;&nbsp;WWW.ECORAFTING.CO.NZ 4. FLOWING WEST -THE GLACIER MOVIE &nbsp;&nbsp;&nbsp;FOX_HELI@XTRA.CO.NZ 5. GLACIER COUNTRY LAKE TOURS &nbsp;&nbsp;&nbsp;WWW.LAKETOURS.CO.NZ 6. GLACIER COUNTRY TOURS &amp; KAYAKS &nbsp;&nbsp;&nbsp;WWW.GLACIERKAYAKS.COM 7. GLACIER HOT POOLS &nbsp;&nbsp;&nbsp;WWW.GLACIERHOTPOOLS.CO.NZ 8. GLACIER VALLEY ECO TOURS &nbsp;&nbsp;&nbsp;WWW.GLACIERVALLEY.CO.NZ 9. HUKAWAI GLACIER CERTRE &nbsp;&nbsp;&nbsp;WWW.HUKAWAI.CO.NZ 10.OKARITO BOAT TOUR--FROM THE WHARF &nbsp;&nbsp;&nbsp;WWW.OKARITOBOATTOURS.CO.NZ 11.OKARITO KIWI TOURS &nbsp;&nbsp;&nbsp;WWW.OKARITOKIWITOURS.CO.NZ 12.OKARITO NATURE TOURS &nbsp;&nbsp;&nbsp;WWW.OKARITO.CO.NZ 13.SKYDIVE NZ &nbsp;&nbsp;&nbsp;WWW.SKYDIVINGNZ.CO.NZ 14.SOUTH WESTLAND HORSETREKS &nbsp;&nbsp;&nbsp;WWW.HORSETREKNZ.COM 15.WHITE HERON SANCTUARY TOURS &nbsp;&nbsp;&nbsp;WWW.WHITEHERONTOURS.CO.NZ
+<p>&#19968;&#26085;&#28216;&#24046;&#19981;&#21040;17&#65306;45
+<p>Helihiking&#65288;&#25512;&#33616;&#25351;&#25968;5&#65289; &nbsp;&nbsp;Franz Joseph Glacier Guides&#65306;http://www.franzjosefglacier.com/&#65292;&#32769;&#29577;&#31859;&#22352;&#30340;&#23601;&#26159;&#36825;&#23478;&#30340;&#65292;399&#22359; &nbsp;Helicopter Line: http://www.helicopter.co.nz/ &#65292;&#36825;&#23478;&#20844;&#21496;&#21487;&#35859;&#36941;&#24067;&#21335;&#23707;&#65292;&#22312;Glacier&#65292;MT.Cook&#65292;&#30343;&#21518;&#38215;&#21644;&#31859;&#31119;&#23777;&#28286;&#37117;&#26377;&#12290;Helihiking&#21482;&#22312;Franz Joseph&#26377;&#65292;395&#22359; &nbsp;Fox Glacier Guiding&#65306;http://www.foxguides.co.nz&#65292;&#30475;&#21517;&#23383;&#20063;&#30693;&#36947;&#65292;&#26159;&#20174;Fox&#36215;&#39134;&#30340;&#65292;399&#22359; &nbsp;Glacier Helicopters&#65306;http://www.glacierhelicopters.co.nz&#65292;&#21487;&#20197;&#20174;Franz Joseph&#25110;Fox&#36215;&#39134;&#65292;399&#22359; &nbsp;&nbsp;Helihiking&#36825;&#39033;&#36816;&#21160;&#34429;&#28982;&#36149;&#65292;&#20294;&#32769;&#29577;&#31859;&#20381;&#26087;&#24378;&#21147;&#25512;&#33616;&#30340;&#65292;&#21407;&#22240;&#26377;&#19977;&#65292;&#19968;&#26159;&#33021;&#20174;&#31354;&#20013;&#20463;&#30640;&#23436;&#25972;&#30340;&#20912;&#24029;&#65292;&#20108;&#26159;&#30452;&#25509;&#39134;&#19978;&#21435;&#65292;&#20912;&#19978;&#26102;&#38388;3&#20010;&#23567;&#26102;&#65292;&#20294;&#26159;&#27604;full/half day hiking&#33410;&#30465;&#20102;&#22823;&#37327;&#30340;&#36208;&#27801;&#30707;&#36335;&#30340;&#26102;&#38388;&#65292;&#22312;&#26032;&#35199;&#20848;&#26053;&#28216;&#65292;&#26102;&#38388;&#21487;&#30495;&#26159;&#37329;&#38065;&#21834;&#65292;&#19977;&#26159;&#38477;&#33853;&#30340;&#20912;&#24029;&#20013;&#19978;&#23618;&#65292;&#20912;&#36136;&#22909;&#20912;&#27934;&#22810;&#65292;&#26356;&#37325;&#35201;&#30340;&#26159;&#65292;&#20154;&#23569;&#12290;Helihiking&#20063;&#26159;&#32769;&#29577;&#31859;&#32769;&#23110;&#20840;&#31243;&#26368;&#21916;&#27426;&#30340;&#39033;&#30446;&#12290; &nbsp;&#32769;&#29577;&#31859;&#29992;&#30340;&#26159;Franz Joseph Glacier Guides&#65292;&#36825;&#23478;&#20844;&#21496;&#26368;&#33879;&#21517;&#30340;&#39033;&#30446;&#26159;&#20912;&#24029;&#24466;&#27493;hiking&#65292;&#32780;&#23545;&#20110;Helihiking&#65292;&#36825;&#23478;&#20844;&#21496;&#27809;&#26377;&#33258;&#24049;&#30340;&#30452;&#21319;&#26426;&#65292;&#24212;&#35813;&#26159;&#31199;&#29992;&#30340;&#21478;&#22806;&#19968;&#23478;&#20844;&#21496;&#30340;&#30452;&#21319;&#26426;&#65292;&#21487;&#33021;&#20063;&#22240;&#27492;&#20215;&#26684;&#31354;&#38388;&#27604;&#36739;&#23567;&#65292; 399&#22359;&#27809;&#26377;&#20219;&#20309;&#25240;&#25187;&#12290; &nbsp;&#36825;&#37324;&#32769;&#29577;&#31859;&#25512;&#33616;&#22823;&#23478;&#21487;&#20197;&#29992;&#19978;&#38754;&#30340;&#31532;&#20108;&#23478;&#20844;&#21496;&#65292;Helicopter Line&#65292;&#36825;&#23478;&#20844;&#21496;&#24456;&#22823;&#65292;&#25317;&#26377;&#33258;&#24049;&#30340;&#30452;&#21319;&#26426;&#26426;&#38431;&#65292;&#22240;&#27492;&#27599;&#22825;&#30340;&#39134;&#34892;&#29677;&#27425;&#26356;&#22810;&#65292;&#26102;&#38388;&#19978;&#26356;&#28789;&#27963;&#65292;&#32780;&#19988;&#26377;&#25240;&#25187;&#12290;&#21482;&#35201;&#22823;&#23478;&#39134;&#25269;&#22885;&#20811;&#20848;&#12289;&#22522;&#30563;&#22478;&#25110;&#32773;&#30343;&#21518;&#38215;&#65292;&#21040;&#22788;&#37117;&#21487;&#20197;&#30475;&#21040;&#19968;&#26412;&#21483;&#20570;&#8220;Arrival&#8221;&#30340;&#20813;&#36153;&#26434;&#24535;&#65292;&#37324;&#38754;&#23601;&#21360;&#30528;&#20182;&#20204;&#23478;&#30340;Coupon&#65292;&#33021;&#30465;20&#36824;&#26159;30&#22359;&#12290;
+<p> &#19968;&#20301;&#39540;&#21451;&#23545;franz jesef&#20912;&#24029;&#30340;&#20307;&#20250;&#65306; &#19978;&#20912;&#24029;&#21487;&#20197;&#36873;&#21322;&#22825;&#65292;3/4&#25110;&#32773;&#19968;&#22825;&#65292;&#24863;&#35273;&#21548;&#20171;&#32461;1/2&#25110;&#32773;&#20840;&#22825;&#27604;&#36739;&#22909;&#12290;&#21322;&#22825;&#28216;&#20998;&#19978;&#21320;8.30&#21644;&#19979;&#21320;12.30&#20004;&#36255;&#12290;&#36866;&#21512;&#35937;&#25105;&#36825;&#26679;&#34892;&#31243;&#32039;&#30340;&#20154;&#12290;&#32780;&#20840;&#22825;&#30340;&#20215;&#38065;&#21482;&#27604;3/4&#22810;&#20102;10&#20803;&#20294;&#26102;&#38388;&#38271;&#20102;&#23558;&#36817;2&#23567;&#26102;&#65292;&#30475;&#30340;&#30495;&#27491;&#20912;&#24029;&#20063;&#22810;&#65292;http://www.franzjosefglacier.com/prices.html&#12290;&#36824;&#26377;&#22352;&#30452;&#21319;&#39134;&#26426;&#30475;&#20912;&#24029;&#30340;&#65292; http://www.helicopter.co.nz/glaciers.asp&#65292;20&#20998;&#38047;185&#20803;&#12290; &#21478;&#22806;&#19968;&#23478;20&#20998;&#38047;180&#20803;&#65292;http://www.scenic-flights.co.nz/fox-franz-josef-glacier.html&#12290;&#36890;&#36807;MAGIC BUS&#23450;&#30340;&#36825;&#20123;&#27963;&#21160;&#21487;&#20197;&#26377;10-20&#20803;&#20248;&#24800;&#20215;&#12290;&#21448;&#24819;&#20415;&#23452;&#21448;&#24819;&#22352;&#22352;&#39134;&#26426;&#30475;&#20912;&#24029;&#30340;&#21487;&#20197;&#35797;&#19979;&#36825;&#20010;http://www.mountainhelicopters.co.nz/price.html&#65292; 10&#20998;&#38047;90&#20803;&#65292;&#19981;&#36807;&#20272;&#35745;&#26102;&#38388;&#30701;&#20102;&#20123;&#65292;&#30475;&#19981;&#21040;&#22826;&#22810;&#22766;&#35266;&#26223;&#35937;&#12290;&#22823;&#23478;&#21487;&#20197;&#21040;&#20102;FRANZ JOSEF&#20877;&#24930;&#24930;&#36873;&#65292;&#22312;&#25152;&#20303;&#30340;&#26053;&#39302;&#37324;&#26377;&#38750;&#24120;&#22810;&#30340;&#23567;&#20876;&#23376;&#35753;&#20320;&#36873;&#12290; &nbsp;1.&#19981;&#33021;&#31359;&#29275;&#20180;&#35044;,&#21542;&#21017;&#23601;&#24517;&#39035;&#31199;&#20182;&#20204;&#30340;&#30331;&#23665;&#35044;&#21872;&#65281; 2.&#35760;&#24471;&#20934;&#22791;&#27700;&#21644;&#23567;&#24178;&#31918;,&#36816;&#21160;&#37327;&#23454;&#22312;&#22823;,&#20013;&#36884;&#21487;&#20197;&#34917;&#20805;&#20307;&#21147;&#65281; 3.&#20581;&#34892;&#20013;&#19981;&#35201;&#38543;&#24847;&#20572;&#19979;&#25293;&#29031;,&#20912;&#27827;&#24456;&#28369;,&#19968;&#36716;&#36523;&#37117;&#38750;&#24120;&#21361;&#38505;&#30340;&#65281;&#20877;&#26469;&#20572;&#19979;&#25293;&#29031;&#20063;&#20250;&#24433;&#21709;&#38431;&#21451;&#34892;&#36208;, &#22240;&#20026;&#20912;&#27827;&#36890;&#36947;&#36890;&#24120;&#21482;&#33021;&#23481;&#19979;&#19968;&#20154;&#36890;&#36807;&#65281;
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_15" class="foldclosed" onClick="show_folder('1_15')" style="POSITION: absolute">+</span> <span id="hide1_15" class="foldopened" onClick="hide_folder('1_15')">-</span>
+May 4
+<ul id="fold1_15" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_15_1" class="foldclosed" onClick="show_folder('1_15_1')" style="POSITION: absolute">+</span> <span id="hide1_15_1" class="foldopened" onClick="hide_folder('1_15_1')">-</span>
+greymouth
+<ul id="fold1_15_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#21435;&#21860;&#37202;&#23627;&#21917;&#37202;&#21644;&#21442;&#35266;&#65292;&#21916;&#27426;&#21917;&#21860;&#37202;&#30340;&#26379;&#21451;&#24212;&#35813;&#21442;&#21152;&#36825;&#20010;&#27963;&#21160;&#65292;&#19968;&#26469;&#21487;&#20197;&#21442;&#35266;&#37247;&#37202;&#36807;&#31243;&#65292;&#20108;&#26469;&#21487;&#20197;&#30021;&#39278;&#32780;&#19988;&#26377;BBQ&#26202;&#39184;&#65292;&#20215;&#38065;&#22909;&#20687;20&#19981;&#21040;&#12290;
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_15_2" class="foldclosed" onClick="show_folder('1_15_2')" style="POSITION: absolute">+</span> <span id="hide1_15_2" class="foldopened" onClick="hide_folder('1_15_2')">-</span>
+Punakaiki&#34180;&#39292;&#23721;
+<ul id="fold1_15_2" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <img src="../../../../Desktop/ScreenShots/Screen%20Shot%202012-04-18%20at%20??10.37.48.png" >&#xa;  
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_16" class="foldclosed" onClick="show_folder('1_16')" style="POSITION: absolute">+</span> <span id="hide1_16" class="foldopened" onClick="hide_folder('1_16')">-</span>
+May 5
+<ul id="fold1_16" style="POSITION: relative; VISIBILITY: visible;"><li>Arthur's Pass
+
+</li>
+<li><span id="show1_16_1" class="foldclosed" onClick="show_folder('1_16_1')" style="POSITION: absolute">+</span> <span id="hide1_16_1" class="foldopened" onClick="hide_folder('1_16_1')">-</span>
+Akaroa&#65288;option&#65289;
+<ul id="fold1_16_1" style="POSITION: relative; VISIBILITY: visible;"><li><p> &#20197;&#21069;&#24456;&#22810;&#20154;&#21435;&#20975;&#24211;&#25289;&#30475;&#40120;&#40060;&#12289;&#19982;&#28023;&#35930;&#28216;&#27891;&#12289;&#19982;&#28023;&#35961;&#28216;&#27891;&#12289;&#21507;&#28023;&#40092;&#65292;&#20854;&#23454;&#22522;&#30563;&#22478;&#38468;&#36817;&#30340;Akaroa&#36319;&#20975;&#24211;&#25289;&#26377;&#24322;&#26354;&#21516;&#24037;&#20043;&#25928;&#12290; &#20197;&#19979;&#26159;&#26032;&#35199;&#20848;&#26053;&#28216;&#23616;&#23448;&#26041;&#32593;&#31449;&#20851;&#20110;Akaroa&#30340;&#20171;&#32461; http://www.newzealand.com/travel ... s.cfm/nodeid/2.html &#38463;&#21345;&#32599;&#29926;&#22352;&#33853;&#22312;&#32654;&#20029;&#30340;&#28023;&#28207;&#20043;&#28392;&#65292;&#28207;&#21475;&#20301;&#20110;&#19968;&#20010;&#21382;&#32463;&#23681;&#26376;&#20405;&#34432;&#30340;&#24040;&#22411;&#27515;&#28779;&#23665;&#30340;&#28779;&#23665;&#21475;&#20869;&#12290;&#23567;&#38215;&#21407;&#26159;&#27861;&#22269;&#20154;&#30340;&#23450;&#23621;&#28857;&#65292;&#26684;&#35843;&#39640;&#38597;&#32780;&#23500;&#26377;&#29305;&#33394;&#12290;&#34903;&#36947;&#26377;&#27861;&#25991;&#21517;&#65292;&#24403;&#22320;&#39184;&#39302;&#30340;&#39118;&#21619;&#20197;&#27861;&#24335;&#28921;&#35843;&#20026;&#20027;&#12290;&#27861;&#22269;&#31227;&#27665;&#22312;1840&#24180;&#26469;&#21040;&#36825;&#37324;&#24314;&#35774;&#23567;&#38215;&#12290;&#36825;&#20123;&#27861;&#22269;&#20154;&#33258;&#20197;&#20026;&#26159;&#27861;&#22269;&#26032;&#39046;&#22303;&#30340;&#39318;&#25209;&#27542;&#27665;&#32773;&#65292;&#19981;&#36807;&#65292;&#23601;&#22312;&#20182;&#20204;&#21040;&#36798;&#21069;&#30340;&#20960;&#22825;&#65292;&#12298;&#24576;&#21776;&#20234;&#26465;&#32422;&#12299;&#24050;&#32463;&#24471;&#21040;&#31614;&#32626;&#65292;&#33521;&#22269;&#20154;&#20381;&#25454;&#26465;&#32422;&#33719;&#24471;&#23545;&#26032;&#35199;&#20848;&#20840;&#22659;&#30340;&#20027;&#26435;&#12290;&#21442;&#35266;&#38463;&#21345;&#32599;&#29926;&#21338;&#29289;&#39302;&#65292;&#38543;&#24847;&#28459;&#27493;&#28216;&#35272;&#20855;&#26377;&#21382;&#21490;&#24847;&#20041;&#30340;&#21035;&#22661;&#12290;&#28207;&#21475;&#24033;&#33322;&#33337;&#21487;&#20197;&#20026;&#20320;&#25552;&#20379;&#35266;&#30475;&#28023;&#35930;&#12289;&#20225;&#40517;&#21644;&#28023;&#35961;&#30340;&#26426;&#20250;&#12290; &nbsp;&#23454;&#29992;&#20449;&#24687;&#65306;&#20154;&#21475;&#32422;600&#65292;&#26377;&#20449;&#24687;&#20013;&#24515;&#65292;&#39184;&#39302;&#65292;&#38134;&#34892;&#12290; &nbsp;&nbsp;&#20132;&#36890;&#20449;&#24687;&#21644;&#28216;&#35760;&#25688;&#24405;&#65306;http://bbs.go2eu.com/viewthread. ... id=35146#pid1861255 &nbsp;&#28216;&#35760;&#65306;http://www.imshawn.cn/blog/read.php/172.htm http://dnicole.spaces.live.com/B ... 181C6426!1024.entry
+<p>&#20170;&#22825;&#25645;Akaroa Shuttle&#21435;&#22522;&#30563;&#22478;&#36793;&#19978;&#30340;&#19968;&#20010;&#21483;Akaroa&#30340;&#28207;&#21475;&#23567;&#38215;&#19968;&#26085;&#28216;&#12290;&#23450;&#30340;&#26159;&#20182;&#20204;&#20844;&#21496;&#27604;&#36739;&#36149;&#30340;&#19968;&#31181;&#31080;&#65292;&#20063;&#23601;&#26159;&#36710;&#34892;&#36335;&#32447;&#26223;&#33394;&#27604;&#36739;&#22909;&#65292;&#20250;&#20572;&#19979;&#26469;&#32473;&#25105;&#20204;&#29031;&#30456;&#65292;&#20840;&#31243;&#26377;&#19968;&#20010;&#24189;&#40664;&#30340;&#32769;&#21496;&#26426;&#25552;&#20379;&#23548;&#28216;&#35299;&#35828;&#26381;&#21153;(&#24403;&#28982;&#26159;&#33521;&#35821;)&#12290;&#19968;&#36335;&#24320;&#22312;&#36830;&#32501;&#30340;&#23567;&#23665;&#22320;&#65292;&#26377;&#23665;&#26377;&#27700;&#65292;&#30495;&#26159;&#24456;&#32654;&#12290;&#19981;&#36807;&#21518;&#26469;&#25165;&#30693;&#36947;&#36825;&#26679;&#30340;&#26223;&#33394;&#22312;&#26032;&#35199;&#20848;&#20063;&#23601;&#22909;&#27604;&#19978;&#28023;&#30340;&#39640;&#27004;&#22823;&#21414;&#65292;&#21496;&#31354;&#35265;&#24815;&#12290; &nbsp;&nbsp;&#21040;&#20102;&#23567;&#38215;&#65292;&#38451;&#20809;&#26126;&#23194;&#65292;&#27839;&#28023;&#37117;&#26159;&#21487;&#20197;&#24736;&#38386;&#22320;&#36208;&#36208;&#25110;&#22352;&#22352;&#30340;&#22909;&#22320;&#26041;&#12290;&#21476;&#33394;&#21476;&#39321;&#30340;&#28783;&#22612;&#65292;&#30721;&#22836;&#23567;&#20141;&#65292;&#38706;&#22825;&#21654;&#21857;&#39302;&#12290;&#24448;&#23665;&#22369;&#19978;&#36208;&#36208;&#23601;&#28385;&#26159;&#24320;&#30528;&#40092;&#33457;&#30340;&#23567;&#21035;&#22661;&#65292;&#27599;&#24162;&#37117;&#19981;&#19968;&#26679;&#30340;&#39068;&#33394;&#24335;&#26679;&#65292;&#21516;&#26679;&#30340;&#26159;&#65292;&#37117;&#29992;&#20027;&#20154;&#21916;&#27426;&#30340;&#33457;&#35013;&#39280;&#30528;&#31383;&#21488;&#65292;&#38376;&#24266;&#21644;&#33457;&#22253;&#65292;&#26497;&#26377;&#21487;&#30475;&#24615;&#12290;&#36824;&#26377;&#19968;&#20123;&#39640;&#39640;&#30340;&#24320;&#28385;&#19968;&#26641;&#22840;&#24352;&#30340;&#28779;&#32418;&#33394;&#33457;&#26421;&#30340;&#26641;&#65292;&#25454;&#35828;&#22312;&#24403;&#22320;&#34987;&#31216;&#20026;Christmas Tree&#12290;&#36825;&#20010;&#21322;&#23707;&#23567;&#38215;&#26366;&#26159;&#27861;&#22269;&#20154;&#30340;&#27542;&#27665;&#22320;&#65292;&#36208;&#22312;&#36825;&#37324;&#65292;&#20223;&#20315;&#31354;&#27668;&#20013;&#37117;&#24357;&#28459;&#19968;&#19997;&#27861;&#20848;&#35199;&#24773;&#35843;&#12290; &nbsp;&nbsp;&#34013;&#33394;&#25151;&#23376;&#30340;Main Piers&#37027;&#37324;&#26377;&#20986;&#28023;&#30340;Tour&#65292;Black Cat&#20844;&#21496;&#26377;&#19968;&#20010;&#26159;&#21487;&#20197;&#20986;&#28023;&#25214;&#28023;&#35930;&#32676;&#65292;&#28982;&#21518;&#19979;&#27700;&#21644;&#28023;&#35930;&#20849;&#27891;&#30340;&#65292;&#26159;&#36825;&#37324;&#19981;&#21487;&#19981;&#35797;&#30340;&#39033;&#30446;&#12290;&#26102;&#38388;&#19981;&#22815;&#27809;&#26377;&#21435;&#65292;&#21518;&#26469;&#22312;&#20975;&#24211;&#25289;&#30475;&#20102;&#20960;&#30334;&#21482;&#28023;&#35930;&#30021;&#28216;&#30340;&#26223;&#35937;&#21518;&#23601;&#35273;&#24471;&#26377;&#20123;&#21487;&#24796;&#12290; &nbsp;&nbsp;http://www.akaroa.com http://www.blackcat.co.nz &nbsp;&#36716;&#33258;&#65306;http://www.gzfun.com/thread-2228-1-1.html
+<p>&#29677;&#20811;&#26031;&#21322;&#23798;Banks Peninsula &nbsp;&nbsp;&#29677;&#20811;&#26031;&#21322;&#23798;&#22320;&#22411;&#20197;&#20302;&#30702;&#30340;&#23665;&#19992;&#33287;&#32654;&#40599;&#30340;&#23721;&#23736;&#21450;&#28023;&#28771;&#28858;&#20027;&#65292;&#20301;&#26044;&#21335;&#23798;&#22522;&#30563;&#22478;&#30340;&#35199;&#21335;&#26041;&#65292;&#26366;&#32147;&#26159;&#28023;&#20013;&#23396;&#23798;&#65292;&#32004;&nbsp;20,000 &#24180;&#21069;&#28779;&#23665;&#29190;&#30332;&#65292;&#23721;&#28479;&#27969;&#20837;&#28023;&#20013;&#32780;&#24418;&#25104;&#29677;&#20811;&#26031;&#21322;&#23798;&#65292;&#28779;&#23665;&#21475;&#27880;&#28415;&#28023;&#27700;&#32780;&#25104;&#38463;&#21345;&#32645;&#29926;&#28771;Akaroa Harbour&#65294;&#29677;&#20811;&#26031;&#21322;&#23798;&#26159;&#20197;&#24235;&#20811;&#33337;&#38263;&#38568;&#34892;&#30340;&#26893;&#29289;&#23416;&#23478;&#32004;&#29791;&#22827;&#29677;&#20811;&#26031;Joseph Banks&#32780;&#21629;&#21517;&#12290;&#26412;&#22320;&#30044;&#29287;&#26989;&#30332;&#36948;&#65292;&#33609;&#21407;&#19978;&#36941;&#20296;&#25104;&#32676;&#30340;&#32191;&#32650;&#12290; &nbsp;&nbsp;&nbsp;&#32178;&#38913;&#65306;&nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#37806;&nbsp;Akaroa &nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#37806;&#22312;&#20551;&#26085;&#26399;&#38291;&#36938;&#23458;&#38642;&#38598;&#65292;&#28961;&#35542;&#26159;&#22312;&#28023;&#23736;&#28459;&#27493;&#12289;&#24066;&#20013;&#24515;&#36891;&#34903;&#36092;&#29289;&#12289;&#27427;&#36062;&#21830;&#24215;&#34269;&#34899;&#25307;&#29260;&#12289;&#38706;&#22825;&#33590;&#24231;&#20139;&#21463;&#19968;&#26479;&#39321;&#37255;&#30340;&#21654;&#21857;&#31561;&#65292;&#28961;&#19981;&#23637;&#29694;&#20986;&#20196;&#20154;&#24841;&#24555;&#30340;&#27861;&#22283;&#24773;&#35519;&#65292;&#35731;&#20154;&#27969;&#36899;&#24536;&#36820;&#12290;&nbsp;&nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#28207;&#20572;&#28415;&#20102;&#19968;&#33368;&#33368;&#30340;&#39080;&#24070;&#36938;&#33351;&#65292;&#20006;&#25552;&#20379;&#36938;&#23458;&#22810;&#31278;&#28023;&#19978;&#27963;&#21205;&#12290;&#28023;&#28771;&#36611;&#24120;&#35211;&#30340;&#28023;&#20013;&#29983;&#29289;&#21063;&#26377;&#34253;&#33394;&#23567;&#20225;&#40285;&#21450;&#36203;&#20811;&#29305;&#28023;&#35930;&#31561;&#65294;&#36938;&#23458;&#21487;&#25645;&#33337;&#20986;&#28023;&#33287;&#28023;&#35930;&#20849;&#33310;&#12290;&#38468;&#36817;&#23665;&#35895;&#26377;&#21063;&#26524;&#22290;&#65292;&#33889;&#33796;&#22290;&#21450;&#33889;&#33796;&#37202;&#22346;&#65292;&#26159;&#25505;&#26524;&#21450;&#21697;&#22160;&#32654;&#37202;&#30340;&#22909;&#22320;&#40670;&#12290;&nbsp;&nbsp;&nbsp;&nbsp;&#32178;&#38913;&#65306;&nbsp;&nbsp;&#32854;&#24444;&#24471;&#25945;&#22530;Saint Peter's Anglican Church &nbsp;&nbsp;1864&#24180;&#33288;&#24314;&#30340;&#32854;&#24444;&#24471;&#25945;&#22530;&#20301;&#26044;Rue Balguerie&#34903;&#65292;&#23660;&#26044;&#25991;&#34269;&#24489;&#33288;&#21733;&#24503;&#24335;&#39080;&#26684;&#65294;&#33775;&#40599;&#30340;&#26408;&#36896;&#24314;&#31689;&#65292;&#25793;&#26377;&#22823;&#22411;&#25104;&#23565;&#30340;&#23574;&#38914;&#31383;&#20197;&#21450;&#22612;&#24335;&#20837;&#21475;&#65294;&#22666;&#39640;&#30340;&#22522;&#22320;&#65307;&#20351;&#20854;&#25104;&#28858;&#20840;&#37806;&#30340;&#28966;&#40670;&#65294;&#20839;&#37096;&#35037;&#28514;&#21063;&#20197;&#31934;&#32048;&#30340;&#22721;&#30059;&#28858;&#20027;&#65294; &nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#27861;&#22283;&#31680;&nbsp;Akaroa Frenchfest &nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#27861;&#22283;&#31680;&#23559;&#26044;2006 &#24180;4&#26376;22&#26085;&#33289;&#36774;&#65292;&#27963;&#21205;&#21253;&#21547;&#27861;&#22283;&#27511;&#21490;&#25991;&#29289;&#33287;&#20659;&#32113;&#12289;&#27861;&#22283;&#38651;&#24433;&#12289;&#38899;&#27138;&#12289;&#32654;&#37202;&#20339;&#39194;&#21450;&#23067;&#27138;&#27963;&#21205;&#31561;&#65294; &nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#29128;&#22612;&nbsp;Akaroa Heads Lighthouse &nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#29128;&#22612;&#24050;&#26377;&#30334;&#24180;&#27511;&#21490;&#65292;&#28418;&#20142;&#30340;&#32005;&#30333;&#33394;&#22806;&#35264;&#65292;&#26997;&#28858;&#24341;&#20154;&#27880;&#30446;&#65294;1980&#24180;&#25972;&#20462;&#24460;&#25644;&#36983;&#33267;&#29694;&#22336;&#65292;&#33267;&#20170;&#20173;&#28982;&#21487;&#20197;&#27491;&#24120;&#20316;&#26989;&#65294; &nbsp;&nbsp;&#38463;&#21345;&#32645;&#29926;&#27511;&#21490;&#23566;&#35261;&nbsp;Akaroa Historic Area Walk &nbsp;&nbsp;&#36938;&#23458;&#20358;&#21040;&#38463;&#21345;&#32645;&#29926;&#37806;&#65292;&#21487;&#20197;&#21069;&#24448;&#36938;&#23458;&#20013;&#24515;&#65292;&#32034;&#21462;&#19968;&#26412;&#38463;&#21345;&#32645;&#29926;&#27511;&#21490;&#23566;&#35261;&#25163;&#20874;&#65292;&#23566;&#35261;&#30001;&#25289;&#20315;&#34903;Rue Lavaud&#38283;&#22987;&#65292;&#33258;&#34892;&#27839;&#33879;&#27511;&#21490;&#23566;&#35261;&#36335;&#24465;&#21443;&#35264;43&#34389;&#24066;&#25919;&#12289;&#21830;&#26989;&#25110;&#31169;&#20154;&#27511;&#21490;&#24314;&#31689;&#21450;&#37325;&#35201;&#22320;&#40670;&#65294; &nbsp;&nbsp;&#36215;&#22763;&#24037;&#24288;&nbsp;Barrys Bay Cheese &nbsp;&nbsp;Barrys Bay&#36215;&#22763;&#24037;&#24288;&#26159;&#38463;&#21345;&#32645;&#29926;&#21807;&#19968;&#23384;&#30041;&#30340;&#36215;&#22763;&#24037;&#24288;&#65292;&#38500;&#20102;&#27599;&#36913;&#19971;&#26085;&#36009;&#21806;&#32020;&#22825;&#28982;&#35069;&#36896;&#30340;&#36215;&#22763;&#22806;&#65292;&#20063;&#25552;&#20379;&#36938;&#23458;&#35264;&#36062;&#36215;&#22763;&#35069;&#36896;&#36942;&#31243;&#65294;&#26368;&#20339;&#30340;&#35264;&#36062;&#26178;&#38291;&#28858;&#19978;&#21320;&#65294;&#24037;&#24288;&#21478;&#22806;&#35373;&#26377;&#31150;&#21697;&#24215;&#65292;&#25552;&#20379;&#33889;&#33796;&#37202;&#12289;&#34562;&#34588;&#12289;&#26524;&#37292;&#21450;&#39154;&#26009;&#31561;&#39080;&#22303;&#21830;&#21697;&#65294; &nbsp;&nbsp;&#22612;&#21345;&#39340;&#22294;&#29926;&#23665;&#35895;&#34224;&#34915;&#33609;&#36786;&#22580;&nbsp;Takamatua Valley Lavender Farm &nbsp;&nbsp;&#32016;&#35199;&#34349;&#34224;&#34915;&#33609;&#29986;&#26399;&#30001;&#26149;&#23395;&#19968;&#30452;&#30427;&#38283;&#21040;&#31179;&#23395;&#65292;&#20027;&#35201;&#29986;&#22320;&#20998;&#24067;&#22312;&#21271;&#23798;&#38518;&#27874;&#21450;&#23041;&#38728;&#38931;&#38291;&#30340;&#39340;&#32013;&#29926;&#22294;&#22320;&#21312;&#65307;&#21335;&#23798;&#22522;&#30563;&#22478;&#38468;&#36817;&#30340;&#38463;&#21345;&#32645;&#29926;&#22320;&#21312;&#12290;&#22612;&#21345;&#39340;&#22294;&#29926;&#23665;&#35895;&#36317;&#38626;&#38463;&#21345;&#32645;&#29926;&#32004;5&#20998;&#37912;&#36554;&#31243;&#65292;&#23665;&#35895;&#27683;&#20505;&#28331;&#21644;&#65292;&#36969;&#21512;&#22855;&#30064;&#26524;&#21450;&#34224;&#34915;&#33609;&#29983;&#38263;&#65294;&#21335;&#23798;&#20854;&#20182;&#22320;&#26041;&#65292;&#22240;&#33879;&#27683;&#20399;&#38364;&#20418;&#65292;&#36890;&#24120;&#28961;&#27861;&#31278;&#26893;&#36889;&#20841;&#31278;&#26893;&#29289;&#12290; &nbsp;&nbsp;&#22612;&#21345;&#39340;&#22294;&#29926;&#34224;&#34915;&#33609;&#36786;&#22580;&nbsp;&nbsp;&nbsp;&#22320;&#22336;&#65306;46 Takamatua Valley Road, Takamatua, P.O Box98, Akaroa &nbsp;&#32178;&#38913;&#65306;&nbsp;&nbsp;&#36027;&#29992;&#65306;&#25104;&#20154;&#32016;&#24163;$5.00&#65292;&#20818;&#31461;&#32016;&#24163;$3.00&#12290; &nbsp;&#38283;&#25918;&#65306;&#31179;&#23395;4&#26376;&#20197;&#21069;&#65294;&#27599;&#26085;11&#65306;00 -17&#65306;00 &nbsp;&#38463;&#21345;&#32645;&#29926;&#24052;&#22763;&nbsp;Akaroa Shuttle Scenic Tours &nbsp;&nbsp;&#22799;&#23395;&nbsp;11/01 - 04/30 &nbsp;&nbsp;&#35264;&#26223;&#24052;&#22763;&#65306;&#27839;&#36884;&#20572;&#38752;&#36215;&#22763;&#24037;&#24288;&#20006;&#35264;&#26223;&#29031;&#30456;&#65294;&nbsp;&nbsp;&#30332;&#36554;&#26178;&#38291;&#65306;&#22522;&#30563;&#22478;&#36938;&#23458;&#20013;&#24515;10.00am&#65294;&#38463;&#21345;&#32645;&#29926;3.35 pm, 4.30 pm. &nbsp;&#30452;&#36948;&#24052;&#22763;&#65306;Direct Shuttle Service &nbsp;&#30332;&#36554;&#26178;&#38291;&#65306;&#22522;&#30563;&#22478;&#36938;&#23458;&#20013;&#24515;&nbsp;8.30am &#21450;&nbsp;2.00pm&#65294;&#38463;&#21345;&#32645;&#29926; 10.30am, 3.35pm, and 4.30pm. &nbsp;&#20908;&#23395;&nbsp;(01/01 - 11/01) &nbsp;&#35264;&#26223;&#24052;&#22763;&#65306;&#27839;&#36884;&#20572;&#38752;&#36215;&#22763;&#24037;&#24288;&#20006;&#35264;&#26223;&#29031;&#30456;&#65294;&nbsp;&nbsp;&#30332;&#36554;&#26178;&#38291;&#65306;&#22522;&#30563;&#22478;&nbsp;10.00am &#65294;&#38463;&#21345;&#32645;&#29926;&nbsp;4.00pm. &nbsp;&#30452;&#36948;&#24052;&#22763;&#65306;&#27839;&#36884;&#19981;&#20572;&nbsp;&nbsp;&#30332;&#36554;&#26178;&#38291;&#65306;&#22522;&#30563;&#22478;&nbsp;8.30am (&#36913;&#20116;&#21152;&#29677;4.30pm)&#65294;&#38463;&#21345;&#32645;&#29926; 10.30am &#21450;&nbsp;4.00pm &nbsp;&#32178;&#38913;&#65306;&nbsp;&nbsp;Akaroa French Connection &nbsp;&nbsp;&#30332;&#36554;&#26178;&#38291;&#65306;&#27599;&#26085;4&#29677;&#24052;&#22763;&#20358;&#24448;&#22522;&#30563;&#22478;&#33287;&#38463;&#21345;&#32645;&#29926;&#65294;&#36554;&#31243;&#32004;1.5&#23567;&#26178;&#65294;&#24517;&#38920;&#38928;&#35330;&#12290; &nbsp;&#28023;&#35930;&#35264;&#36062;&#36938;&#33351;&nbsp;&nbsp;&nbsp;&#22522;&#30563;&#22478;&#30475;&#28023;&#35930;&#22320;&#40670;&#26159;&#22312;&#21033;&#29305;&#29246;&#38931;&#28023;&#28207;&#21450;&#38463;&#21345;&#32645;&#29926;&#20841;&#22320;&#65292;&#20027;&#35282;&#21063;&#26159;&#20840;&#19990;&#30028;&#39636;&#24418;&#26368;&#23567;&#65307;&#20063;&#26368;&#31232;&#26377;&#30340;&#36203;&#20811;&#29305;&#28023;&#35930;&#12290;&#36938;&#23458;&#21487;&#20197;&#33258;&#22522;&#30563;&#22478;&#25645;&#20056;&#25509;&#39361;&#36554;&#20358;&#21040;&#28023;&#28207;&#65292;&#20808;&#30001;&#23566;&#36938;&#35611;&#35299;&#23433;&#20840;&#20107;&#38917;&#65292;&#20877;&#25563;&#31359;&#28507;&#27700;&#34915;&#65292;&#38568;&#21363;&#30331;&#33337;&#20986;&#28023;&#25506;&#35370;&#36889;&#20123;&#21487;&#24859;&#30340;&#28023;&#20013;&#31934;&#38728;&#65294;&#34892;&#31243;&#20013;&#38500;&#20102;&#35264;&#36062;&#32654;&#40599;&#30340;&#28023;&#28771;&#39080;&#20809;&#65292;&#22312;&#27700;&#20013;&#33287;&#28023;&#35930;&#23305;&#25138;&#65292;&#23566;&#36938;&#20063;&#26371;&#25552;&#20379;&#35920;&#23500;&#30340;&#29983;&#24907;&#25945;&#23416;&#12290;&nbsp;&nbsp;&nbsp;Blackcat Swimming with Dolphins &nbsp;&nbsp;&#22320;&#22336;&#65306;&#30908;&#38957;&nbsp;Main Wharf, Akaroa &nbsp;&#34892;&#31243;&#65306;&nbsp;&nbsp;Swimming with dolphins &#20840;&#31243;3&#23567;&#26178;&#65292;&#27700;&#20013;2&#23567;&#26178;&#65294;&#25104;&#20154;&#32016;&#24163;$95&#65292;&#20818;&#31461;&#32016;&#24163;$75 &nbsp;Akaroa Harbour Cruises &#20840;&#31243;2&#23567;&#26178;&#65292;&#25104;&#20154;&#32016;&#24163;$49&#65292;&#20818;&#31461;&#32016;&#24163;$20 &nbsp;Akaroa Kayak Adventure &#20840;&#31243;9&#23567;&#26178;&#65292;&#25104;&#20154;&#32016;&#24163;$125 &nbsp;Christchurch Wildlife Cruises&#65288;&#21033;&#29305;&#29246;&#38931;&#65289;&#20840;&#31243;2&#23567;&#26178;&#65292;&#25104;&#20154;&#32016;&#24163;$45&#65292;&#20818;&#31461;&#32016;&#24163;$20 &nbsp;&#32178;&#31449;&#65306;&nbsp;&nbsp;Dolphin Experience Akaroa &nbsp;&#22320;&#22336;&#65306;&#25289;&#20315;&#34903;Rue Lavaud, Akaroa &nbsp;&#34892;&#31243;&#65306;&nbsp;&nbsp;Swimming &#20840;&#31243;&#19977;&#23567;&#26178;&#65292;&#27700;&#20013;&#20108;&#23567;&#26178;&#65294;&#25104;&#20154;&#32016;&#24163;$92&#65292; &#20818;&#31461;&#32016;&#24163;$70 &nbsp;Watching &#20840;&#31243;&#20108;&#23567;&#26178;&#65292;&#25104;&#20154;&#32016;&#24163;$42&#65292;&#20818;&#31461;&#32016;&#24163;$25 &nbsp;&#32178;&#31449;&#65306;&nbsp;&nbsp;&#36203;&#20811;&#29305;&#28023;&#35930;&nbsp;Hector's Dolphin &nbsp;&nbsp;&#36203;&#20811;&#29305;&#28023;&#35930;&#26159;&#20840;&#19990;&#30028;&#39636;&#24418;&#26368;&#23567;&#65307;&#39636;&#38263;&#32004;1.2-1.4&#20844;&#23610;&#65307;&#39636;&#37325;&#32004;45&#20844;&#26020;&#65288;&#38596;&#24615;&#36203;&#20811;&#29305;&#28023;&#35930;&#36611;&#36629;&#32004;10&#20844;&#26020;&#65294;&#65289;&#65292;&#20063;&#26159;&#26368;&#31232;&#26377;&#30340;&#28023;&#35930;&#12290;&#20840;&#29699;&#21482;&#21097;&#19979;&#32016;&#35199;&#34349;&#21335;&#23798;&#28023;&#22495;&#32004;4,000 &#38587;&#65294;&#26866;&#24687;&#22320;&#22312;&#21271;&#23798;&#30340;&#36203;&#20811;&#29305;&#28023;&#35930;&#21448;&#31281;&#28858;&nbsp;Maui dolphin&#65292;&#25976;&#37327;&#26356;&#23569;&#65307;&#20677;&#26377;100-150&#38587;&#65294; &nbsp;&nbsp;&#36203;&#20811;&#29305;&#28023;&#35930;&#36890;&#24120;&#26377;&#22266;&#23450;&#30340;&#26866;&#24687;&#22320;&#65292;&#20197;2-12&#38587;&#32676;&#32858;&#29983;&#27963;&#65292;&#36339;&#36493;&#33021;&#21147;&#36229;&#24375;&#65294;&#21916;&#22909;&#23305;&#25138;&#65292;&#20363;&#22914;&#34909;&#28010;&#65292;&#20006;&#20197;&#28023;&#33609;&#28858;&#29609;&#20855;&#65294;&#23565;&#20154;&#39006;&#22312;&#28023;&#20013;&#27963;&#21205;&#65307;&#20363;&#22914;&#28216;&#27891;&#21450;&#21010;&#36629;&#33351;&#25110;&#38283;&#27773;&#33351;&#37117;&#38750;&#24120;&#26377;&#33288;&#36259;&#65294;&#29280;&#26371;&#36319;&#33879;&#28023;&#20013;&#36629;&#33351;&#21010;&#36942;&#25152;&#28608;&#36215;&#30340;&#27874;&#28010;&#32780;&#34892;&#65294; &nbsp;&nbsp;&nbsp;&#32178;&#31449;&#65306;&nbsp;&nbsp;&#30333;&#39981;&#20225;&#40285;White-flippered Penguins &nbsp;&nbsp;&#30333;&#39981;&#20225;&#40285;&#39636;&#38263;&#32004;&nbsp;68&#20844;&#20998;&#65292;&#39636;&#37325;&#32004; 3.2&#20844;&#26020;&#65292;&#26159;&#31070;&#20185;&#20225;&#40285;&#65288;&#23567;&#34253;&#20225;&#40285;&#65289;&#30340;&#31361;&#35722;&#31278;&#65292;&#20294;&#20063;&#26377;&#28023;&#27915;&#29983;&#29289;&#23416;&#23478;&#35469;&#28858;&#29280;&#20497;&#21644;&#31070;&#20185;&#20225;&#40285;&#26159;&#21516;&#19968;&#31278;&#20225;&#40285;&#12290; &nbsp;&nbsp;&#23567;&#34253;&#20225;&#40285;&nbsp;(&#31070;&#20185;&#20225;&#40285;) Little Blue Penguins ( Fairy Penguins ) &nbsp;&nbsp;&#23567;&#34253;&#20225;&#40285;&#39636;&#38263;&#32004;40&#20844;&#20998;&#65292;&#39636;&#37325;&#32004; 1&#20844;&#26020;&#65292;&#26159;&#20225;&#40285;&#30070;&#20013;&#39636;&#22411;&#26368;&#23567;&#30340;&#12290;&#32972;&#37096;&#26377;&#33879;&#28145;&#34253;&#33394;&#32701;&#27611;&#65292;&#25429;&#39135;&#21508;&#31278;&#39770;&#39006;&#20197;&#21450;&#30002;&#27580;&#29983;&#29289;&#65292;&#36890;&#24120;&#30333;&#26085;&#28507;&#20837;&#28023;&#20013;&#35219;&#39135;&#65292;&#20621;&#26202;&#22825;&#33394;&#24494;&#26263;&#26178;&#22238;&#21040;&#38520;&#22320;&#65292;&#20197;&#28023;&#23736;&#26049;&#27801;&#19992;&#28858;&#24034;&#31348;&#12290;&#33213;&#23376;&#38750;&#24120;&#23567;&#65292;&#25976;&#37327;&#32004; 50&#33836;&#23565;&#65294; &nbsp;&nbsp;&#20225;&#40285;&nbsp;&nbsp;&nbsp;&#20225;&#40285;&#26159;&#19968;&#31278;&#19981;&#26371;&#39131;&#32724;&#32780;&#25797;&#38263;&#28507;&#27700;&#30340;&#28023;&#40165;&#65292;&#23660;&#26044;&#40165;&#32177;&#65307;&#20225;&#40285;&#30446;&#65307;&#20225;&#40285;&#31185;&#12290;&#20840;&#29699;&#20849;&#26377;18&#31278;&#20225;&#40285;&#65294;&#20225;&#40285;&#30382;&#19979;&#26377;&#21402;&#21402;&#30340;&#33026;&#32938;&#20445;&#35703;&#23652;&#65292;&#33021;&#25269;&#31142;&#22196;&#23506;&#65292;&#22823;&#37096;&#20221;&#29983;&#27963;&#22312;&#21335;&#26997;&#23506;&#20919;&#27700;&#22495;&#65294;&#21478;&#22806;&#20063;&#26377;&#21152;&#25289;&#24085;&#25096;&#26031;&#20225;&#40285;&#29983;&#27963;&#22312;&#36196;&#36947;&#38468;&#36817;&#30340;&#21152;&#25289;&#24085;&#25096;&#26031;&#32676;&#23798;&#12290;&#29280;&#20497;&#21487;&#36969;&#25033;&#25885;&#27663;38&#24230;&#30340;&#27683;&#20399;&#65294; &nbsp;&nbsp;Pohatu-Flea Bay &#28023;&#28771;&#35264;&#36062;&#30333;&#39981;&#20225;&#40285;&nbsp;&nbsp;&nbsp;Pohatu-Flea &#28023;&#28771;&#26159;&#19968;&#34389;&#20301;&#26044;&#29677;&#20811;&#26031;&#21322;&#23798;&#65307;&#23567;&#23567;&#30340;&#28023;&#28771;&#65292;&#26159;&#32016;&#35199;&#34349;&#26412;&#23798;&#30333;&#39981;&#20225;&#40285;&#26368;&#22823;&#26866;&#24687;&#34389;&#65292;&#20063;&#26159;&#29983;&#24907;&#20445;&#32946;&#21312;&#65294;&#26412;&#22320;&#20801;&#35377;&#23567;&#22296;&#39636;&#36914;&#20837;&#35264;&#36062;&#30333;&#39981;&#20225;&#40285;&#65292;&#20598;&#32780;&#36996;&#21487;&#30475;&#21040;&#40643;&#30524;&#20225;&#40285;&#65294;&#26368;&#20339;&#35264;&#36062;&#26178;&#38291;&#26159;&nbsp;9&#26376;&#33267;&#20358;&#24180; 1&#26376;&#21754;&#32946;&#26399;&#65294;&#21478;&#22806;&#22312; 4&#26376;&#33267; 9&#26376;&#20598;&#32780;&#26377;&#30333;&#39981;&#20225;&#40285;&#35219;&#39135;&#27512;&#20358;&#65294;&#20063;&#26377;&#27231;&#26371;&#35264;&#36062;&#65294; &nbsp;&nbsp;&#35264;&#36062;&#30333;&#39981;&#20225;&#40285;&#65294;&#20621;&#26202;&#26377;&#20841;&#26799;&#27425;&#65294;&nbsp;&nbsp;&nbsp;&#20839;&#23481;&#65306;&#22235;&#36650;&#20659;&#21205;&#36554;Akaroa&#25509;&#36865;&#21069;&#24448; Pohatu&#65292;&#27839;&#36335;&#21487;&#25885;&#24433;&#65292;&#30333;&#39981;&#20225;&#40285;&#23566;&#35261;&#65294;&#20840;&#31243;2.5-3&#23567;&#26178;&#65294; &nbsp;&#36027;&#29992;&#65306;&#25104;&#20154;&#32016;&#24163;$48&#65294;&#20818;&#31461;&#32016;&#24163;$30&#65294; &nbsp;&#20839;&#23481;&#65306;&#33258;&#34892;&#39381;&#39387;&#22235;&#36650;&#20659;&#21205;&#36554;&#21069;&#24448;&nbsp;Pohatu&#65292;&#30333;&#39981;&#20225;&#40285;&#23566;&#35261;&#65294; &nbsp;&#36027;&#29992;&#65306;&#25104;&#20154;&#32016;&#24163;$16&#65294; &nbsp;&nbsp;&#36716;&#33258;&#65306;http://mbtnz.com/n0112.html &nbsp;&#22914;&#26524;&#20320;&#24819;&#36817;&#36317;&#38626;&#25509;&#35320;&#32016;&#35199;&#34349;&#28023;&#19978;&#29983;&#24907;&#65292;&#21487;&#20197;&#20358;&#21040;&nbsp;Akarma Harbour &#20986;&#28023;&#22312;&#36938;&#33351;&#19978;&#25509;&#35320;&#32016;&#35199;&#34349;&#30340;&#19968;&#20123;&#28023;&#27915;&#29983;&#29289;&#65292;&#32004;&nbsp;2 &#20491;&#23567;&#26178;&#30340;&#26053;&#36884;&#19978;&#65292;&#26371;&#30475;&#21040;&#19990;&#30028;&#19978;&#39636;&#22411;&#26368;&#32048;&#23567;&#30340;&#31232;&#26377;&#28023;&#35930;&nbsp;- Hector's Dolphin &#65292;&#36889;&#20123;&#21451;&#22909;&#21644;&#22909;&#22855;&#30340;&#21754;&#20083;&#21205;&#29289;&#26159;&#19968;&#24180;&#22823;&#37096;&#20998;&#26178;&#38291;&#37117;&#21487;&#20197;&#30475;&#24471;&#35211;&#65292;&#27492;&#34892;&#26371;&#36935;&#26368;&#32048;&#23567;&#30340;&nbsp;White Flippered Blue Penguin &#65292;&#20063;&#26377;&#27231;&#26371;&#30475;&#21040;&#35377;&#22810;&#19981;&#21516;&#30340;&#40165;&#39006;&#65292;&#20197;&#33268;&#26159;&#28693;&#33256;&#28357;&#32085;&#30340;&nbsp;yellow-eyed penguin&#12290;&#22909;&#36939;&#30340;&#35441;&#65292;&#22312;&#20986;&#30332;&#30340;&#26178;&#20505;&#26371;&#30475;&#21040;&#36575;&#27611;&#28023;&#35961;&#22312;&#28207;&#21475;&#38468;&#36817;&#30340;&#23721;&#30707;&#26348;&#26085;&#20809;&#28020;&#65292;&#36884;&#20013;&#20063;&#26371;&#30475;&#21040;&#25972;&#20491; Akarma &#21322;&#23798;&#35377;&#22810;&#30340;&#28023;&#34645;&#27934;&#21644;&#28779;&#23665;&#25080;&#23830;&#65292;&#21040;&#26368;&#24460;&#26371;&#22312;&#30439;&#21345;&#26031;&#28771;&#21443;&#35264;&#39853;&#39770;&#39178;&#27542;&#22580;&#23665;&#25080;&#23830;&#12290;&#22914;&#26524;&#20320;&#24819;&#30340;&#35441;&#26356;&#21487;&#20197;&#21443;&#21152;&nbsp;Swimming with Dolphins &#30340;&#27963;&#21205;&#65292;&#21644;&nbsp;Hector's Dolphin &#19968;&#36215;&#22312;&#28023;&#20013;&#26274;&#28216;&#12290;&nbsp;&nbsp;&#22320;&#22336;&nbsp;Beach Road, Akaroa, Canterbury 7520, New Zealand &nbsp;&#26597;&#35426;&nbsp;64-3 304 7641 &nbsp;&#21069;&#24448;&#26041;&#27861;&nbsp;&#36335;&#32218;&nbsp;&nbsp;&#23560;&#36554;&nbsp;&nbsp;&#36215;&#40670;&#65306;Cathedral Square &nbsp;&#20056;&#25645;&nbsp;Akaroa Shuttle &#20358;&#22238;&nbsp;&#22522;&#30563;&#22478;&#21644;&nbsp;Akaroa Harbour&#12290; &nbsp;&nbsp;&#20837;&#22580;&#36027;&nbsp;&#32016;&#20803;&nbsp;62 (&#25104;&#20154;) &#32016;&#20803;&nbsp;25 (5 - 15 &#27506;&#23567;&#31461;) &nbsp;&#28040;&#36027;&#25552;&#31034;&nbsp;&#20986;&#28023;&#27963;&#21205;&#26178;&#38291;&#28858;&nbsp;2 &#23567;&#26178;&nbsp;Swimming with Dolphins &#30340;&#25910;&#36027;&#22914;&#19979;&#65306;&nbsp;&#25104;&#20154;&nbsp;$ 125 &#32016;&#20803;&nbsp;&#23567;&#31461;&nbsp;$ 108 &#32016;&#20803;&nbsp;&#27599;&#22296;&#21482;&#38480;&nbsp;10 &#20154;&nbsp;&#20986;&#30332;&#26178;&#38291;&#28858;&nbsp;0600 &#12289;&nbsp;0830 &#12289;&nbsp;1330 &#12289;&nbsp;1530 &#27599;&#24180;&#30340;&nbsp;5 &#26376;&#33267;&nbsp;9 &#26376;&#21152;&#38283;&nbsp;1130 &#30340;&#20986;&#30332;&#26178;&#38291;&nbsp;&nbsp;&#38283;&#25918;&#26178;&#38291;&nbsp;13&#26178;30&#20998; &nbsp;&#38283;&#25918;&#25552;&#31034;&nbsp;&#27599;&#24180;&nbsp;11 &#26376;&#33267;&#32716;&#24180;&nbsp;4 &#26376;&#26178;&#38291;&#28858;&nbsp;1100 &nbsp;&#36899;&#32080;&nbsp;http://www.blackcat.co.nz/
+<p>&#22240;&#20026;&#21382;&#21490;&#21407;&#22240;&#65292;Akaroa&#36825;&#20010;&#23567;&#22478;&#24066;&#39047;&#20855;&#27861;&#22269;&#39118;&#24773;&#12290;&#30475;&#20102;&#24403;&#22320;&#30340;&#26032;&#38395;&#25165;&#30693;&#36947;&#65292;&#25105;&#20204;&#21040;Akaroa&#21518;&#30340;&#21069;&#19968;&#22825;&#65292;&#27491;&#22909;&#26159;&#24403;&#22320;&#19968;&#24180;&#19968;&#24230;&#8220;&#27861;&#22269;&#33410;&#8221;&#65292;&#27491;&#22909;&#38169;&#36807;&#65292;&#26377;&#20123;&#21487;&#24796;&#12290;&#36825;&#20010;&#24230;&#20551;&#30340;&#23567;&#22478;&#24066;&#27809;&#26377;&#22826;&#22810;&#31508;&#22696;&#21487;&#20197;&#25551;&#36848;&#65292;&#20540;&#24471;&#19968;&#25552;&#30340;&#26159;&#30721;&#22836;&#36793;&#19978;&#30340;&#39277;&#24215;&#8220;MA MAISION&#8221;&#65292;&#36825;&#20010;&#36830;&#32493;5&#24180;&#33719;&#24471;&#26032;&#35199;&#20848;&#37329;&#22870;&#30340;&#39184;&#21381;&#65292;&#22312;&#29275;&#32905;&#12289;&#32650;&#32905;&#21644;&#34321;&#33735;&#26009;&#29702;&#26041;&#38754;&#39047;&#26377;&#24515;&#24471;&#65292;&#35760;&#21508;&#20301;&#26377;&#26426;&#20250;&#21487;&#20197;&#21435;&#21697;&#23581;&#19968;&#19979;&#12290;
+<p> http://www.dolphinsakaroa.co.nz/ http://www.blackcat.co.nz/ &#26159;&#20840;&#19990;&#30028;&#26368;&#23567;&#20063;&#26159;&#26368;&#31232;&#26377;&#30340;Hector&#28023;&#35930;&#30340;&#23478;&#20065;&#12290; &#36319;&#28023;&#35930;&#28216;&#27891;130NZ&#65292;&#22914;&#26524;&#21482;&#26159;&#30475;&#30475;&#65292;&#21017;&#26159;70NZ&#65306; Departs Report time at 6.00am 8.30am, 11.30am, 1.30pm, 3.30pm on demand (11.30am only from May to Sep) &nbsp;-------------------------------------------------------------------------------- &nbsp;Duration Two hours on the water (plus half an hour before and after) &nbsp;------------------------------------------------------------------------------- Adult $130 ($70 to watch) -------------------------------------------------------------------------------- Child $110 [8 to 15 years] (watching $35) [5-15 years] Prices are in New Zealand dollars and include GST. 
+<p> &#22312;akaroa&#38500;&#20102;&#30475;&#40120;&#40060;&#12289;&#36319;&#28023;&#35930;&#28216;&#27891;&#12289;&#38035;&#40060;&#22806;&#65292;&#36824;&#21487;&#20197;&#30475;&#20225;&#40517;&#65292;&#19981;&#36807;&#35201;66NZ/&#20154;&#65292;&#26377;&#28857;&#36149;&#12290;&#20294;&#26159;&#22914;&#26524;&#27809;&#26377;&#21435;oamru&#21644;dunedin&#30340;&#20154;&#65292;&#21040;&#36825;&#37324;&#30475;&#30475;&#20225;&#40517;&#20063;&#19981;&#38169;&#12290;
+</li>
+</ul>
+</li>
+<li><span id="show1_16_2" class="foldclosed" onClick="show_folder('1_16_2')" style="POSITION: absolute">+</span> <span id="hide1_16_2" class="foldopened" onClick="hide_folder('1_16_2')">-</span>
+&#22238;&#23478;&#21543; &#23401;&#23376;
+<ul id="fold1_16_2" style="POSITION: relative; VISIBILITY: visible;"><li><p>Air New Zealand 542 - Aircraft Airbus A320-100/200 nonstop 1h, 20m 745 km - Get seating advice Depart: Christchurch (CHC), 17:55 NZST Arrive: Auckland (AKL), 19:15 NZST
+<p>Air New Zealand 287 - &nbsp;Aircraft Boeing 777-200 nonstop 13h, 30m 10,417 km - Get seating advice Depart: Auckland (AKL), 21:50 NZST Arrive: Beijing (PEK), 07:20 CST(+1 day)
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_17" class="foldclosed" onClick="show_folder('1_17')" style="POSITION: absolute">+</span> <span id="hide1_17" class="foldopened" onClick="hide_folder('1_17')">-</span>
+May 6
+<ul id="fold1_17" style="POSITION: relative; VISIBILITY: visible;"><li>7&#65306;20&#21040;&#36798;&#21271;&#20140;
+
+</li>
+
+</ul>
+</li>
+
+</ul><SCRIPT type="text/javascript">
+fold_document();
+</SCRIPT>
+</body>
+</html>

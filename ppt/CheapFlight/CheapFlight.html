@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CheapFlight</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+
+      body {
+        font-family: 'Droid Serif';
+        font-size: 20px;
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      h1 { font-size: 4em; }
+      h2 { font-size: 2em; }
+      h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        -moz-border-radius: 5px;
+        -web-border-radius: 5px;
+        background: #e7e8e2;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+class: center, middle, inverse
+---
+# 如何买到廉价机票
+.footnote[[jollychang@gmail.com](mailto:jollychang@gmail.com)]
+---
+layout: false
+# 便宜的概念
+* 关注价格：价格最便宜  
+![](PEK-DXB-BOS.png)
+---
+# 便宜的概念
+* 关注价格：价格最便宜  
+![](PEK-DXB-BOS.png)
+* 关注转机时间：时间最短的情况下价格最便宜
+---
+# 便宜的概念
+* 关注价格：价格最便宜  
+![](PEK-DXB-BOS.png)
+* 关注转机时间：时间最短的情况下价格最便宜
+* 时间最短的情况下，起飞/降落时间合适再看价格便宜
+---
+# 先做大体的行程  
+* 不走回头路：开口航班  
+    * 省交通费用 
+    * 顺时针、逆时针、自西向东、自东向西 
+---
+# 先做大体的行程  
+* 不走回头路：开口航班  
+    * 省交通费用 
+    * 顺时针、逆时针、自西向东、自东向西 
+    
+* 更灵活的日程
+    * 早一日/周、晚一日/周
+---
+# 先做大体的行程  
+* 不走回头路：开口航班  
+    * 省交通费用 
+    * 顺时针、逆时针、自西向东、自东向西 
+    
+* 更灵活的日程
+    * 早一日/周、晚一日/周
+    
+* 大城市进出港便宜，小城市、旅游圣地贵
+---
+# 工欲善其事必先利其器
+## 比价网站  
+* http://www.kayak.com/ 
+
+    * 不知道去哪里的时候 
+    ![](kayak.jpg)  
+    * url直接GET请求`www.kayak.com/flights/PEK-ANC/2014-05-31/2014-06-13` 
+---
+## 比价网站      
+* http://www.tianxun.cn/  
+    * 支持API，当多种选择可能性的时候，提高效率，使用例子[skyscanner](https://github.com/jollychang/skyscanner) 
+    
+    ```
+    city_from = ['CAN', 'PEK', 'HKG']
+    city_to = ['BUD', 'VIE', 'ZAG']
+    arrive_date = ['13/09/17', '13/09/18']
+    ```
+---
+## 比价网站      
+* http://www.wideroe.no/en  
+    * 日期比较灵活的时候  
+    ![](wideroe.jpg)  
+---
+## 比价网站      
+### 比价网站只是查，最后只在官网订票，方便后续服务
+
+---
+# 高级技巧
+## [最佳的订票时间是在出发前的两三个月](https://www.evernote.com/shard/s18/sh/ffa0fccb-c535-4ad6-a532-fae13c6c3311/6da3480e2f607311ef027dc76b185674)  
+---
+# 高级技巧
+* 由机场航班信息，倒推航空公司飞行计划 ([Dubrovnik航班时刻表](https://www.evernote.com/shard/s18/sh/ae70ffe2-9ccc-46c1-b2c3-d57e5040de83/a27e75aa63c22203e1ea2df68644c51b))   
+![](DBV-airport.png)
+---
+# 高级技巧  
+* 洲际或者区域优先考虑[廉价航空列表](http://en.wikipedia.org/wiki/List_of_low-cost_airlines)
+---
+# 高级技巧  
+* 运用里程兑换([里程购买](http://boardingarea.com/tmtravelworldcn/2014/02/20/alaskaair-2/)、[里程折扣兑换](http://boardingarea.com/tmtravelworldcn/2014/03/06/70off/))
+
+    </textarea>
+    <script src="remark-0.6.0.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        ratio: '16:9',
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,3 @@
+[submodule "gushi_namer"]
+	path = gushi_namer
+	url = git@github.com:jollychang/gushi_namer.git
